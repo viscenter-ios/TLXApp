@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0173F0E139D1D6B00449002 /* CoreDataTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0173F0C139D1D6B00449002 /* CoreDataTableVC.m */; };
+		D0173F0F139D1D6B00449002 /* CoreDataTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */; };
+		D0173F14139D1E7200449002 /* EmailTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0173F12139D1E7200449002 /* EmailTableVC.m */; };
+		D0173F15139D1E7200449002 /* EmailTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0173F13139D1E7200449002 /* EmailTableVC.xib */; };
+		D0CAD629139D291600D6366F /* AppendTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CAD627139D291600D6366F /* AppendTableVC.m */; };
+		D0CAD62A139D291600D6366F /* AppendTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0CAD628139D291600D6366F /* AppendTableVC.xib */; };
+		D0F68531139830A9001CF136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68530139830A9001CF136 /* UIKit.framework */; };
+		D0F68533139830A9001CF136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68532139830A9001CF136 /* Foundation.framework */; };
+		D0F68535139830A9001CF136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68534139830A9001CF136 /* CoreGraphics.framework */; };
+		D0F68537139830A9001CF136 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68536139830A9001CF136 /* CoreData.framework */; };
+		D0F6853D139830A9001CF136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0F6853B139830A9001CF136 /* InfoPlist.strings */; };
+		D0F68540139830A9001CF136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F6853F139830A9001CF136 /* main.m */; };
+		D0F68543139830A9001CF136 /* TLXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68542139830A9001CF136 /* TLXAppDelegate.m */; };
+		D0F68546139830A9001CF136 /* TLX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0F68544139830A9001CF136 /* TLX.xcdatamodeld */; };
+		D0F6854A139830A9001CF136 /* TLXAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68549139830A9001CF136 /* TLXAppDelegate_iPhone.m */; };
+		D0F6854D139830A9001CF136 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F6854B139830A9001CF136 /* MainWindow_iPhone.xib */; };
+		D0F68551139830A9001CF136 /* TLXAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68550139830A9001CF136 /* TLXAppDelegate_iPad.m */; };
+		D0F68554139830A9001CF136 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68552139830A9001CF136 /* MainWindow_iPad.xib */; };
+		D0F68568139830FF001CF136 /* FormVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F6855E139830FF001CF136 /* FormVC.m */; };
+		D0F68569139830FF001CF136 /* FormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F6855F139830FF001CF136 /* FormVC.xib */; };
+		D0F6856A139830FF001CF136 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68561139830FF001CF136 /* MainMenu.m */; };
+		D0F6856B139830FF001CF136 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68562139830FF001CF136 /* MainMenu.xib */; };
+		D0F6856C139830FF001CF136 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68564139830FF001CF136 /* SettingsVC.m */; };
+		D0F6856D139830FF001CF136 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68565139830FF001CF136 /* SettingsVC.xib */; };
+		D0F6857013983213001CF136 /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F6856F13983213001CF136 /* Experiment.m */; };
+		D0F68574139833F5001CF136 /* FileTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68572139833F5001CF136 /* FileTableVC.m */; };
+		D0F68575139833F5001CF136 /* FileTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68573139833F5001CF136 /* FileTableVC.xib */; };
+		D0F68577139838CC001CF136 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68576139838CC001CF136 /* MessageUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D0173F0B139D1D6B00449002 /* CoreDataTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableVC.h; sourceTree = "<group>"; };
+		D0173F0C139D1D6B00449002 /* CoreDataTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableVC.m; sourceTree = "<group>"; };
+		D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoreDataTableVC.xib; sourceTree = "<group>"; };
+		D0173F11139D1E7100449002 /* EmailTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailTableVC.h; sourceTree = "<group>"; };
+		D0173F12139D1E7200449002 /* EmailTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailTableVC.m; sourceTree = "<group>"; };
+		D0173F13139D1E7200449002 /* EmailTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailTableVC.xib; sourceTree = "<group>"; };
+		D0CAD626139D291600D6366F /* AppendTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppendTableVC.h; sourceTree = "<group>"; };
+		D0CAD627139D291600D6366F /* AppendTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppendTableVC.m; sourceTree = "<group>"; };
+		D0CAD628139D291600D6366F /* AppendTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppendTableVC.xib; sourceTree = "<group>"; };
+		D0F6852C139830A9001CF136 /* TLX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F68530139830A9001CF136 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D0F68532139830A9001CF136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0F68534139830A9001CF136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D0F68536139830A9001CF136 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D0F6853A139830A9001CF136 /* TLX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TLX-Info.plist"; sourceTree = "<group>"; };
+		D0F6853C139830A9001CF136 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0F6853E139830A9001CF136 /* TLX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TLX-Prefix.pch"; sourceTree = "<group>"; };
+		D0F6853F139830A9001CF136 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0F68541139830A9001CF136 /* TLXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLXAppDelegate.h; sourceTree = "<group>"; };
+		D0F68542139830A9001CF136 /* TLXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLXAppDelegate.m; sourceTree = "<group>"; };
+		D0F68545139830A9001CF136 /* TLX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TLX.xcdatamodel; sourceTree = "<group>"; };
+		D0F68548139830A9001CF136 /* TLXAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TLXAppDelegate_iPhone.h; path = iPhone/TLXAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		D0F68549139830A9001CF136 /* TLXAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TLXAppDelegate_iPhone.m; path = iPhone/TLXAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		D0F6854C139830A9001CF136 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		D0F6854F139830A9001CF136 /* TLXAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TLXAppDelegate_iPad.h; path = iPad/TLXAppDelegate_iPad.h; sourceTree = "<group>"; };
+		D0F68550139830A9001CF136 /* TLXAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TLXAppDelegate_iPad.m; path = iPad/TLXAppDelegate_iPad.m; sourceTree = "<group>"; };
+		D0F68553139830A9001CF136 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		D0F6855D139830FF001CF136 /* FormVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormVC.h; sourceTree = "<group>"; };
+		D0F6855E139830FF001CF136 /* FormVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormVC.m; sourceTree = "<group>"; };
+		D0F6855F139830FF001CF136 /* FormVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormVC.xib; sourceTree = "<group>"; };
+		D0F68560139830FF001CF136 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		D0F68561139830FF001CF136 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		D0F68562139830FF001CF136 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D0F68563139830FF001CF136 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
+		D0F68564139830FF001CF136 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
+		D0F68565139830FF001CF136 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
+		D0F6856E13983213001CF136 /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
+		D0F6856F13983213001CF136 /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
+		D0F68571139833F5001CF136 /* FileTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTableVC.h; sourceTree = "<group>"; };
+		D0F68572139833F5001CF136 /* FileTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTableVC.m; sourceTree = "<group>"; };
+		D0F68573139833F5001CF136 /* FileTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileTableVC.xib; sourceTree = "<group>"; };
+		D0F68576139838CC001CF136 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0F68529139830A9001CF136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F68577139838CC001CF136 /* MessageUI.framework in Frameworks */,
+				D0F68531139830A9001CF136 /* UIKit.framework in Frameworks */,
+				D0F68533139830A9001CF136 /* Foundation.framework in Frameworks */,
+				D0F68535139830A9001CF136 /* CoreGraphics.framework in Frameworks */,
+				D0F68537139830A9001CF136 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0F68521139830A9001CF136 = {
+			isa = PBXGroup;
+			children = (
+				D0F68538139830A9001CF136 /* TLX */,
+				D0F6852F139830A9001CF136 /* Frameworks */,
+				D0F6852D139830A9001CF136 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0F6852D139830A9001CF136 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0F6852C139830A9001CF136 /* TLX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0F6852F139830A9001CF136 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0F68576139838CC001CF136 /* MessageUI.framework */,
+				D0F68530139830A9001CF136 /* UIKit.framework */,
+				D0F68532139830A9001CF136 /* Foundation.framework */,
+				D0F68534139830A9001CF136 /* CoreGraphics.framework */,
+				D0F68536139830A9001CF136 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0F68538139830A9001CF136 /* TLX */ = {
+			isa = PBXGroup;
+			children = (
+				D0F6855D139830FF001CF136 /* FormVC.h */,
+				D0F6855E139830FF001CF136 /* FormVC.m */,
+				D0F68560139830FF001CF136 /* MainMenu.h */,
+				D0F68561139830FF001CF136 /* MainMenu.m */,
+				D0F68563139830FF001CF136 /* SettingsVC.h */,
+				D0F68564139830FF001CF136 /* SettingsVC.m */,
+				D0F68541139830A9001CF136 /* TLXAppDelegate.h */,
+				D0F68542139830A9001CF136 /* TLXAppDelegate.m */,
+				D0F68571139833F5001CF136 /* FileTableVC.h */,
+				D0F68572139833F5001CF136 /* FileTableVC.m */,
+				D0173F0B139D1D6B00449002 /* CoreDataTableVC.h */,
+				D0173F0C139D1D6B00449002 /* CoreDataTableVC.m */,
+				D0173F11139D1E7100449002 /* EmailTableVC.h */,
+				D0173F12139D1E7200449002 /* EmailTableVC.m */,
+				D0CAD626139D291600D6366F /* AppendTableVC.h */,
+				D0CAD627139D291600D6366F /* AppendTableVC.m */,
+				D0F68544139830A9001CF136 /* TLX.xcdatamodeld */,
+				D0F6856E13983213001CF136 /* Experiment.h */,
+				D0F6856F13983213001CF136 /* Experiment.m */,
+				D0F68547139830A9001CF136 /* iPhone */,
+				D0F6854E139830A9001CF136 /* iPad */,
+				D0F68539139830A9001CF136 /* Supporting Files */,
+				D0F68573139833F5001CF136 /* FileTableVC.xib */,
+				D0F6855F139830FF001CF136 /* FormVC.xib */,
+				D0F68562139830FF001CF136 /* MainMenu.xib */,
+				D0F68565139830FF001CF136 /* SettingsVC.xib */,
+				D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */,
+				D0173F13139D1E7200449002 /* EmailTableVC.xib */,
+				D0CAD628139D291600D6366F /* AppendTableVC.xib */,
+			);
+			path = TLX;
+			sourceTree = "<group>";
+		};
+		D0F68539139830A9001CF136 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0F6853A139830A9001CF136 /* TLX-Info.plist */,
+				D0F6853B139830A9001CF136 /* InfoPlist.strings */,
+				D0F6853E139830A9001CF136 /* TLX-Prefix.pch */,
+				D0F6853F139830A9001CF136 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0F68547139830A9001CF136 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				D0F68548139830A9001CF136 /* TLXAppDelegate_iPhone.h */,
+				D0F68549139830A9001CF136 /* TLXAppDelegate_iPhone.m */,
+				D0F6854B139830A9001CF136 /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		D0F6854E139830A9001CF136 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D0F6854F139830A9001CF136 /* TLXAppDelegate_iPad.h */,
+				D0F68550139830A9001CF136 /* TLXAppDelegate_iPad.m */,
+				D0F68552139830A9001CF136 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0F6852B139830A9001CF136 /* TLX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0F68557139830A9001CF136 /* Build configuration list for PBXNativeTarget "TLX" */;
+			buildPhases = (
+				D0F68528139830A9001CF136 /* Sources */,
+				D0F68529139830A9001CF136 /* Frameworks */,
+				D0F6852A139830A9001CF136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TLX;
+			productName = TLX;
+			productReference = D0F6852C139830A9001CF136 /* TLX.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0F68523139830A9001CF136 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "University Of Kentucky";
+			};
+			buildConfigurationList = D0F68526139830A9001CF136 /* Build configuration list for PBXProject "TLX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0F68521139830A9001CF136;
+			productRefGroup = D0F6852D139830A9001CF136 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0F6852B139830A9001CF136 /* TLX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0F6852A139830A9001CF136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F6853D139830A9001CF136 /* InfoPlist.strings in Resources */,
+				D0F6854D139830A9001CF136 /* MainWindow_iPhone.xib in Resources */,
+				D0F68554139830A9001CF136 /* MainWindow_iPad.xib in Resources */,
+				D0F68569139830FF001CF136 /* FormVC.xib in Resources */,
+				D0F6856B139830FF001CF136 /* MainMenu.xib in Resources */,
+				D0F6856D139830FF001CF136 /* SettingsVC.xib in Resources */,
+				D0F68575139833F5001CF136 /* FileTableVC.xib in Resources */,
+				D0173F0F139D1D6B00449002 /* CoreDataTableVC.xib in Resources */,
+				D0173F15139D1E7200449002 /* EmailTableVC.xib in Resources */,
+				D0CAD62A139D291600D6366F /* AppendTableVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0F68528139830A9001CF136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F68540139830A9001CF136 /* main.m in Sources */,
+				D0F68543139830A9001CF136 /* TLXAppDelegate.m in Sources */,
+				D0F68546139830A9001CF136 /* TLX.xcdatamodeld in Sources */,
+				D0F6854A139830A9001CF136 /* TLXAppDelegate_iPhone.m in Sources */,
+				D0F68551139830A9001CF136 /* TLXAppDelegate_iPad.m in Sources */,
+				D0F68568139830FF001CF136 /* FormVC.m in Sources */,
+				D0F6856A139830FF001CF136 /* MainMenu.m in Sources */,
+				D0F6856C139830FF001CF136 /* SettingsVC.m in Sources */,
+				D0F6857013983213001CF136 /* Experiment.m in Sources */,
+				D0F68574139833F5001CF136 /* FileTableVC.m in Sources */,
+				D0173F0E139D1D6B00449002 /* CoreDataTableVC.m in Sources */,
+				D0173F14139D1E7200449002 /* EmailTableVC.m in Sources */,
+				D0CAD629139D291600D6366F /* AppendTableVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0F6853B139830A9001CF136 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0F6853C139830A9001CF136 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D0F6854B139830A9001CF136 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0F6854C139830A9001CF136 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		D0F68552139830A9001CF136 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0F68553139830A9001CF136 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0F68555139830A9001CF136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0F68556139830A9001CF136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D0F68558139830A9001CF136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
+				INFOPLIST_FILE = "TLX/TLX-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D0F68559139830A9001CF136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
+				INFOPLIST_FILE = "TLX/TLX-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0F68526139830A9001CF136 /* Build configuration list for PBXProject "TLX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F68555139830A9001CF136 /* Debug */,
+				D0F68556139830A9001CF136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0F68557139830A9001CF136 /* Build configuration list for PBXNativeTarget "TLX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F68558139830A9001CF136 /* Debug */,
+				D0F68559139830A9001CF136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D0F68544139830A9001CF136 /* TLX.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0F68545139830A9001CF136 /* TLX.xcdatamodel */,
+			);
+			currentVersion = D0F68545139830A9001CF136 /* TLX.xcdatamodel */;
+			path = TLX.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D0F68523139830A9001CF136 /* Project object */;
+}
