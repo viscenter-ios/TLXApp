@@ -40,8 +40,8 @@
 
 @property(nonatomic, retain) NSManagedObjectContext *moContext;
 
+-(IBAction)hideKeyboard: (UITextField*)text;
 -(IBAction) nextEntry;
--(IBAction) finishedEntry;
 -(IBAction) goToMainMenu;
 -(IBAction) updateSlider: (UISlider *) slider;
 -(void) resetAndUpdateState;

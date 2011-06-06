@@ -37,6 +37,5 @@
 
 -(void) fetchRecords;
 -(ENTITY_NAME *) objForIndexPath:(NSIndexPath *)indexPath;
--(void) continueEntry: (ENTITY_NAME *) e;
 @end
 
