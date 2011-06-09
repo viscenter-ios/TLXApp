@@ -15,7 +15,7 @@
 //
 -(IBAction) startEntry
 {
-  FormVC *form = [[FormVC alloc] init];
+  DynamicFormVC *form = [[DynamicFormVC alloc] init];
   [self.navigationController pushViewController:form animated:YES];
   [form setMoContext:[(TLXAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext]];
   [form setSubjectLabelText:[NSString stringWithFormat:@"Subject: %@", [subjectText text]]];

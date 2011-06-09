@@ -13,6 +13,9 @@
 #import "FileTableVC.h"
 #import "Experiment.h"
 #import "CoreDataTableVC.h"
+#import "DynamicFormVC.h"
+#import "QFileGrabberVC.h"
+#import "AboutVC.h"
 @class EmailTableVC;
 @class AppendTableVC;
 @interface TLXAppDelegate : NSObject <UIApplicationDelegate> {

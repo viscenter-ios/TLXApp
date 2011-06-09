@@ -15,5 +15,7 @@
 -(IBAction) newEntry;
 -(IBAction) existingEntry;
 -(IBAction) emailData;
+-(IBAction) goToAbout;
+-(IBAction) goToDownload;
 
 @end

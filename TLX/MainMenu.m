@@ -24,9 +24,17 @@
 
 }
 -(IBAction) emailData{
-  EmailTableVC *fSelect = [[EmailTableVC alloc] init];
+  EmailTableVC *email = [[EmailTableVC alloc] init];
+  [self.navigationController pushViewController:email animated:YES];
+}
+-(IBAction) goToDownload{
+  QFileGrabberVC *fSelect = [[QFileGrabberVC alloc] init];
   [self.navigationController pushViewController:fSelect animated:YES];
-
+}
+-(IBAction) goToAbout{
+  AboutVC *about = [[AboutVC alloc] init];
+  [self.navigationController pushViewController:about animated:YES];
+  
 }
 ////////////////////////////////////////////////////////////////////////////////
 //
