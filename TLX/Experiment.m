@@ -2,7 +2,7 @@
 //  Experiment.m
 //  TLX
 //
-//  Created by Justin Proffitt on 6/2/11.
+//  Created by Justin Proffitt on 6/9/11.
 //  Copyright (c) 2011 University Of Kentucky. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 
 @implementation Experiment
-@dynamic dataString;
+@dynamic qFileName;
 @dynamic fileName;
+@dynamic dataString;
 @dynamic lastTrial;
 
 @end

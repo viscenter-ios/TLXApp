@@ -9,11 +9,13 @@
 #import "MainMenu.h"
 #import "AppendTableVC.h"
 #import "EmailTableVC.h"
+#import "SettingsVC.h"
 
 @implementation MainMenu
 
 ////////////////////////////////////////////////////////////////////////////////
-//
+//These functions control the flow of the program, pushing the proper VC onto
+//the navigation stack.
 -(IBAction) newEntry{
   SettingsVC *settings = [[SettingsVC alloc] init];
   [self.navigationController pushViewController:settings animated:YES];
@@ -37,7 +39,6 @@
   
 }
 ////////////////////////////////////////////////////////////////////////////////
-//
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

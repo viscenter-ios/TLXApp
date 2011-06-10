@@ -5,7 +5,7 @@
 //  Created by Justin Proffitt on 6/2/11.
 //  Copyright 2011 University Of Kentucky. All rights reserved.
 //
-
+//This view is not currently used, it is the static NASA-TLX form.
 #import <UIKit/UIKit.h>
 #import "TLXAppDelegate.h"
 

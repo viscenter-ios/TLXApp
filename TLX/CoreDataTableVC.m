@@ -23,6 +23,9 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+  entityName = @"Experiment";
+  keyName = @"fileName";
+  dataString = @"dataString";
 	self.title = @"Files";
 	[self.navigationController setNavigationBarHidden: FALSE];
 	if(self.moContext == nil){
@@ -78,22 +81,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 //This returns a reference to teh experiment located at the specified index path. This is
 //used when creating the CSV file.
--(ENTITY_NAME*) objForIndexPath:(NSIndexPath*)indexPath{
-	ENTITY_NAME *e = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	NSLog(@"File Name: %@", [e valueForKey:KEY_NAME]);
-	NSLog(@"File Name: %@", [e valueForKey:DATA_STRING]);
+-(NSManagedObject*) objForIndexPath:(NSIndexPath*)indexPath{
+	NSManagedObject *e = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	return e;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 //This function grabs the Experiment data from the managed object context and populates the
 //table view with the fetched records.
 -(void) fetchRecords{
-	NSEntityDescription *entity = [NSEntityDescription entityForName:ENTITY_NAME_STRING inManagedObjectContext:self.moContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.moContext];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
   
 	[request setEntity:entity];
 	//Set the way that we will sort the fetched records. In this case in alphabetical order.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:KEY_NAME ascending:YES];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:keyName ascending:YES];
 	NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 	[request setSortDescriptors:sortDescriptors];
 	[sortDescriptor release];
@@ -144,7 +145,7 @@
 	//Grab the object at the corresponding index in the fetchedResultsController.
   NSManagedObject *managedObject = 
   [fetchedResultsController objectAtIndexPath:indexPath];
-  [cell.textLabel setText:[managedObject valueForKey:KEY_NAME]];
+  [cell.textLabel setText:[managedObject valueForKey:keyName]];
 	return cell;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////

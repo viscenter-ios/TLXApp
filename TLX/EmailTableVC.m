@@ -9,6 +9,8 @@
 
 
 @implementation EmailTableVC
+///////////////////////////////////////////////////////////////////////////////////////////
+//This function takes the selected file at the current row and emails it out.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath{
   
@@ -16,7 +18,7 @@
   
   
   //Grab the experiment data from that is at the index path.
-  ENTITY_NAME *e = [self objForIndexPath:indexPath];
+  Experiment *e = (Experiment *)[self objForIndexPath:indexPath];
   
 	if(![MFMailComposeViewController canSendMail]){
 		NSLog(@"can't send mail");
@@ -36,11 +38,11 @@
   //for the filename.
   
 	NSString *subject = [NSString stringWithFormat:@"%@ - %@",
-                       [e valueForKey:KEY_NAME], dateString];
+                       [e valueForKey:keyName], dateString];
    csvFileName = [NSString stringWithFormat:@"%@.csv", subject];
   
   //Extract the contents of the data attribute as a string.
-	NSString *message = [NSString stringWithFormat:@"%@", [e valueForKey:DATA_STRING]];
+	NSString *message = [NSString stringWithFormat:@"%@", [e valueForKey:dataString]];
   
   //Generate a block of data to be used as the attachment.
   NSData *fileData = [message dataUsingEncoding:NSASCIIStringEncoding];

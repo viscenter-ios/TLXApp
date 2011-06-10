@@ -15,6 +15,8 @@
 		D033CDC2139FC42800E69D08 /* DynamicFormVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D033CDC0139FC42800E69D08 /* DynamicFormVC.xib */; };
 		D033CDC613A0623F00E69D08 /* QFileGrabberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D033CDC413A0623F00E69D08 /* QFileGrabberVC.m */; };
 		D033CDC713A0623F00E69D08 /* QFileGrabberVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D033CDC513A0623F00E69D08 /* QFileGrabberVC.xib */; };
+		D03B2DA713A12E03005D7E38 /* QFile.m in Sources */ = {isa = PBXBuildFile; fileRef = D03B2DA613A12E03005D7E38 /* QFile.m */; };
+		D0813E3113A130A300E5DB8D /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = D0813E3013A130A300E5DB8D /* Experiment.m */; };
 		D0CAD629139D291600D6366F /* AppendTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CAD627139D291600D6366F /* AppendTableVC.m */; };
 		D0CAD62A139D291600D6366F /* AppendTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0CAD628139D291600D6366F /* AppendTableVC.xib */; };
 		D0EFF70E13A12468001B8581 /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0EFF70C13A12468001B8581 /* AboutVC.m */; };
@@ -37,7 +39,6 @@
 		D0F6856B139830FF001CF136 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68562139830FF001CF136 /* MainMenu.xib */; };
 		D0F6856C139830FF001CF136 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68564139830FF001CF136 /* SettingsVC.m */; };
 		D0F6856D139830FF001CF136 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68565139830FF001CF136 /* SettingsVC.xib */; };
-		D0F6857013983213001CF136 /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F6856F13983213001CF136 /* Experiment.m */; };
 		D0F68574139833F5001CF136 /* FileTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68572139833F5001CF136 /* FileTableVC.m */; };
 		D0F68575139833F5001CF136 /* FileTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68573139833F5001CF136 /* FileTableVC.xib */; };
 		D0F68577139838CC001CF136 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68576139838CC001CF136 /* MessageUI.framework */; };
@@ -56,6 +57,10 @@
 		D033CDC313A0623F00E69D08 /* QFileGrabberVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFileGrabberVC.h; sourceTree = "<group>"; };
 		D033CDC413A0623F00E69D08 /* QFileGrabberVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFileGrabberVC.m; sourceTree = "<group>"; };
 		D033CDC513A0623F00E69D08 /* QFileGrabberVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QFileGrabberVC.xib; sourceTree = "<group>"; };
+		D03B2DA513A12E03005D7E38 /* QFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFile.h; sourceTree = "<group>"; };
+		D03B2DA613A12E03005D7E38 /* QFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFile.m; sourceTree = "<group>"; };
+		D0813E2F13A130A300E5DB8D /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
+		D0813E3013A130A300E5DB8D /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 		D0CAD626139D291600D6366F /* AppendTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppendTableVC.h; sourceTree = "<group>"; };
 		D0CAD627139D291600D6366F /* AppendTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppendTableVC.m; sourceTree = "<group>"; };
 		D0CAD628139D291600D6366F /* AppendTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppendTableVC.xib; sourceTree = "<group>"; };
@@ -89,8 +94,6 @@
 		D0F68563139830FF001CF136 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		D0F68564139830FF001CF136 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		D0F68565139830FF001CF136 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
-		D0F6856E13983213001CF136 /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
-		D0F6856F13983213001CF136 /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 		D0F68571139833F5001CF136 /* FileTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTableVC.h; sourceTree = "<group>"; };
 		D0F68572139833F5001CF136 /* FileTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTableVC.m; sourceTree = "<group>"; };
 		D0F68573139833F5001CF136 /* FileTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileTableVC.xib; sourceTree = "<group>"; };
@@ -168,8 +171,10 @@
 				D0CAD626139D291600D6366F /* AppendTableVC.h */,
 				D0CAD627139D291600D6366F /* AppendTableVC.m */,
 				D0F68544139830A9001CF136 /* TLX.xcdatamodeld */,
-				D0F6856E13983213001CF136 /* Experiment.h */,
-				D0F6856F13983213001CF136 /* Experiment.m */,
+				D0813E2F13A130A300E5DB8D /* Experiment.h */,
+				D0813E3013A130A300E5DB8D /* Experiment.m */,
+				D03B2DA513A12E03005D7E38 /* QFile.h */,
+				D03B2DA613A12E03005D7E38 /* QFile.m */,
 				D0F68547139830A9001CF136 /* iPhone */,
 				D0F6854E139830A9001CF136 /* iPad */,
 				D0F68539139830A9001CF136 /* Supporting Files */,
@@ -299,7 +304,6 @@
 				D0F68568139830FF001CF136 /* FormVC.m in Sources */,
 				D0F6856A139830FF001CF136 /* MainMenu.m in Sources */,
 				D0F6856C139830FF001CF136 /* SettingsVC.m in Sources */,
-				D0F6857013983213001CF136 /* Experiment.m in Sources */,
 				D0F68574139833F5001CF136 /* FileTableVC.m in Sources */,
 				D0173F0E139D1D6B00449002 /* CoreDataTableVC.m in Sources */,
 				D0173F14139D1E7200449002 /* EmailTableVC.m in Sources */,
@@ -307,6 +311,8 @@
 				D033CDC1139FC42800E69D08 /* DynamicFormVC.m in Sources */,
 				D033CDC613A0623F00E69D08 /* QFileGrabberVC.m in Sources */,
 				D0EFF70E13A12468001B8581 /* AboutVC.m in Sources */,
+				D03B2DA713A12E03005D7E38 /* QFile.m in Sources */,
+				D0813E3113A130A300E5DB8D /* Experiment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

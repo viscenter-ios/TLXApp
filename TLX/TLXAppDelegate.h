@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainMenu.h"
-#import "SettingsVC.h"
+#import "QFile.h"
 #import "FormVC.h"
 #import "FileTableVC.h"
 #import "Experiment.h"
@@ -16,6 +16,7 @@
 #import "DynamicFormVC.h"
 #import "QFileGrabberVC.h"
 #import "AboutVC.h"
+@class SettingsVC;
 @class EmailTableVC;
 @class AppendTableVC;
 @interface TLXAppDelegate : NSObject <UIApplicationDelegate> {

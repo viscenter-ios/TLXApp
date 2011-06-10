@@ -9,7 +9,7 @@
 //presented using a UIWebView and retrieved from a web server.
 
 #import <UIKit/UIKit.h>
-#define ABOUT_ADDRESS @"http://halsted.vis.uky.edu/~justin/about.html"
+#define ABOUT_ADDRESS @"http://halsted.vis.uky.edu/~justin/aboutWORK.html"
 
 @interface AboutVC : UIViewController {
   IBOutlet UIImageView *bgImage;
