@@ -5,18 +5,14 @@
 //  Created by Justin Proffitt on 6/2/11.
 //  Copyright 2011 University Of Kentucky. All rights reserved.
 //
-//This class is used to display the about information for the app. The information is
-//presented using a UIWebView and retrieved from a web server.
+//This class is used to display the about information for the app. The information is presented using a UIWebView and an included html file.
 
 #import <UIKit/UIKit.h>
-#define ABOUT_ADDRESS @"http://halsted.vis.uky.edu/~justin/aboutWORK.html"
 
 @interface AboutVC : UIViewController {
-  IBOutlet UIImageView *bgImage;
-  IBOutlet UIWebView *aboutWebView;
+    UIWebView *aboutWebView;
 }
 
-@property (nonatomic, retain) IBOutlet UIWebView *aboutWebView;
-@property (nonatomic, retain) IBOutlet UIImageView *bgImage;
--(IBAction) goToMain;
+@property (nonatomic, retain) UIWebView *aboutWebView;
+
 @end

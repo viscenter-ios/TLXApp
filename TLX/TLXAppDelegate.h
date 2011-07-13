@@ -9,29 +9,28 @@
 #import <UIKit/UIKit.h>
 #import "MainMenu.h"
 #import "QFile.h"
-#import "FormVC.h"
-#import "FileTableVC.h"
 #import "Experiment.h"
 #import "CoreDataTableVC.h"
 #import "DynamicFormVC.h"
 #import "QFileGrabberVC.h"
 #import "AboutVC.h"
+
 @class SettingsVC;
 @class EmailTableVC;
 @class AppendTableVC;
+
 @interface TLXAppDelegate : NSObject <UIApplicationDelegate> {
   UINavigationController *NavController;
 }
 
 @property (nonatomic, retain) UINavigationController *NavController;
-
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+- (void)saveNASA;
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
