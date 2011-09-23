@@ -10,86 +10,81 @@
 #import "AppendTableVC.h"
 #import "EmailTableVC.h"
 #import "SettingsVC.h"
-#import "CoreDataTableVC.h"
-#import "QFileCreator.h"
 
 @implementation MainMenu
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //When the view loads, we add the webview to the view and load the "about.html" file
-- (void)viewDidLoad{
-    self.title = @"Main Menu";
-    [super viewDidLoad];
-}
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Push the 'settings' View Controller
+////////////////////////////////////////////////////////////////////////////////
+//These functions control the flow of the program, pushing the proper VC onto
+//the navigation stack.
 -(IBAction) newEntry{
-    SettingsVC *settings = [[SettingsVC alloc] init];
-    [self.navigationController pushViewController:settings animated:YES];
+  SettingsVC *settings = [[SettingsVC alloc] init];
+  [self.navigationController pushViewController:settings animated:YES];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Push the 'entries' View Controller
 -(IBAction) existingEntry{
-    AppendTableVC *fSelect = [[AppendTableVC alloc] init];
-    [self.navigationController pushViewController:fSelect animated:YES];
+  AppendTableVC *fSelect = [[AppendTableVC alloc] init];
+  [self.navigationController pushViewController:fSelect animated:YES];
+
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Push the 'results' View Controller
 -(IBAction) emailData{
-    EmailTableVC *email = [[EmailTableVC alloc] init];
-    [self.navigationController pushViewController:email animated:YES];
+  EmailTableVC *email = [[EmailTableVC alloc] init];
+  [self.navigationController pushViewController:email animated:YES];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Push the 'download' View Controller
 -(IBAction) goToDownload{
-    QFileCreator *qf = [[QFileCreator alloc] init];
-    [self presentModalViewController:qf animated:YES];
-    /*QFileGrabberVC *fSelect = [[QFileGrabberVC alloc] init];
-    [self.navigationController pushViewController:fSelect animated:YES];*/
+  QFileGrabberVC *fSelect = [[QFileGrabberVC alloc] init];
+  [self.navigationController pushViewController:fSelect animated:YES];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Push the 'about' View Controller
 -(IBAction) goToAbout{
-    AboutVC *about = [[AboutVC alloc] init];
-    [self.navigationController pushViewController:about animated:YES];
+  AboutVC *about = [[AboutVC alloc] init];
+  [self.navigationController pushViewController:about animated:YES];
+  
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
+- (void)dealloc
+{
+    [super dealloc];
+}
 
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
 
+#pragma mark - View lifecycle
+-(void) viewWillAppear:(BOOL)animated
+{
+  [self.navigationController setNavigationBarHidden:YES];
 
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Make sure we don't rotate the view into a landscape mode and mess everything up
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+}
+- (void)viewDidLoad
+{
+  [self.navigationController setNavigationBarHidden:YES];
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
 
 @end

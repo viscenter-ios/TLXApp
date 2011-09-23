@@ -5,26 +5,11 @@
 //  Created by Justin Proffitt on 6/8/11.
 //  Copyright 2011 University Of Kentucky. All rights reserved.
 //
-//This VC grabs downloads questionnaire data from the given URL and parses and saves the data to Core Data when the Save button is pressed. Currently this VC does not make sure that the URL is valid, so a bad URL or bad CSV file may cause the app to crash. The format of the QFile needs to be:
-
-//AAAAAAAAAAAATTTTTTTTTTEEEEEEEENNNNNNNNNTTTTTTTTIIIIIOOOOOOOONNNNNN!
-//This view is no longer presented, just used to parse the 'default' questionnaire (saveFirst function), called in the app delegate.
-//                       ATTENTION!
-//                           /\
-//                          //\\
-//                         //  \\
-//                        //    \\
-//                       //      \\
-//                      //        \\
-//                     //          \\
-//                    //            \\
-//                           ||         
-//                           ||
-//                           ||
-//                           ||
-//                           ||
-//                           ||
-//                           ||
+//This VC grabs downloads questionnaire data from the given URL and 
+//parses and saves the data to Core Data when the Save button is pressed.
+//Currently this VC does not make sure that the URL is valid, so a bad URL
+//or bad CSV file may cause the app to crash.
+//The format of the QFile needs to be:
 /*
 TITLE NAME_OF_QUESTIONNAIRE
 
@@ -91,15 +76,11 @@ The full NASA-TLX in this format can be found at the bottom of this file.
 @property(retain, nonatomic) NSNumber *lowRange;
 @property(retain, nonatomic) NSNumber *highRange;
 @property(retain, nonatomic) NSNumber *rangeInc;
-
-
--(void) saveFirst;
--(void) parseQFile;
--(void) saveQFile;
+-(IBAction) saveQFile;
 -(IBAction) downloadQFile;
--(IBAction) createQFile;
 -(void) printDatabase;
--(IBAction) hideKeyboard: (UITextField*)text;
+-(IBAction) goToMain;
+- (IBAction)hideKeyboard: (UITextField*)text;
 @end
 
 /*
@@ -133,7 +114,8 @@ The full NASA-TLX in this format can be found at the bottom of this file.
  RANGE_MIN_LABEL Low	
  RANGE_MAX_LABEL High
  
- Mental Demand, Physical Demand, Temporal Demand, Performance, Effort, and Frustration
-It is important to note that the file should not contain any tab characters, all whitespace should be newlines and spaces.
+ 
+It is important to note that the file should not contain any tab characters, all whitespace
+should be newlines and spaces.
 
  */
