@@ -8,6 +8,7 @@
 //This class inherits from CoreDataTableVC and allows the user to email
 //out a csv file that they select from the table view presented.
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "CoreDataTableVC.h"
 
 @interface EmailTableVC : CoreDataTableVC<MFMailComposeViewControllerDelegate> {
