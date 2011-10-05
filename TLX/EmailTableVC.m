@@ -22,6 +22,9 @@
   
 	if(![MFMailComposeViewController canSendMail]){
 		NSLog(@"can't send mail");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device not set up to send mail." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
 		return;
 	}
   

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2798C4D2143270030081A19A /* QFileCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798C4D0143270030081A19A /* QFileCreator.m */; };
+		2798C4D3143270030081A19A /* QFileCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2798C4D1143270030081A19A /* QFileCreator.xib */; };
 		D0173F0E139D1D6B00449002 /* CoreDataTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0173F0C139D1D6B00449002 /* CoreDataTableVC.m */; };
 		D0173F0F139D1D6B00449002 /* CoreDataTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */; };
 		D0173F14139D1E7200449002 /* EmailTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0173F12139D1E7200449002 /* EmailTableVC.m */; };
@@ -41,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2798C4CF143270030081A19A /* QFileCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFileCreator.h; sourceTree = "<group>"; };
+		2798C4D0143270030081A19A /* QFileCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFileCreator.m; sourceTree = "<group>"; };
+		2798C4D1143270030081A19A /* QFileCreator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QFileCreator.xib; sourceTree = "<group>"; };
 		D0173F0B139D1D6B00449002 /* CoreDataTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableVC.h; sourceTree = "<group>"; };
 		D0173F0C139D1D6B00449002 /* CoreDataTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableVC.m; sourceTree = "<group>"; };
 		D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoreDataTableVC.xib; sourceTree = "<group>"; };
@@ -138,6 +143,8 @@
 		D0F68538139830A9001CF136 /* TLX */ = {
 			isa = PBXGroup;
 			children = (
+				2798C4CF143270030081A19A /* QFileCreator.h */,
+				2798C4D0143270030081A19A /* QFileCreator.m */,
 				D0EFF70B13A12468001B8581 /* AboutVC.h */,
 				D0EFF70C13A12468001B8581 /* AboutVC.m */,
 				D033CDBE139FC42800E69D08 /* DynamicFormVC.h */,
@@ -165,6 +172,7 @@
 				D0F6854E139830A9001CF136 /* iPad */,
 				D0F68539139830A9001CF136 /* Supporting Files */,
 				D0F68562139830FF001CF136 /* MainMenu.xib */,
+				2798C4D1143270030081A19A /* QFileCreator.xib */,
 				D0F68565139830FF001CF136 /* SettingsVC.xib */,
 				D0173F0D139D1D6B00449002 /* CoreDataTableVC.xib */,
 				D0173F13139D1E7200449002 /* EmailTableVC.xib */,
@@ -268,6 +276,7 @@
 				D033CDC2139FC42800E69D08 /* DynamicFormVC.xib in Resources */,
 				D033CDC713A0623F00E69D08 /* QFileGrabberVC.xib in Resources */,
 				D0EFF70F13A12468001B8581 /* AboutVC.xib in Resources */,
+				2798C4D3143270030081A19A /* QFileCreator.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +302,7 @@
 				D0EFF70E13A12468001B8581 /* AboutVC.m in Sources */,
 				D03B2DA713A12E03005D7E38 /* QFile.m in Sources */,
 				D0813E3113A130A300E5DB8D /* Experiment.m in Sources */,
+				2798C4D2143270030081A19A /* QFileCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +379,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
 				INFOPLIST_FILE = "TLX/TLX-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -382,7 +394,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
 				INFOPLIST_FILE = "TLX/TLX-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
