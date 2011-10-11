@@ -8,7 +8,7 @@
 
 
 
-@interface QFileCreator : UIViewController <UITextFieldDelegate>{
+@interface QFileCreator : UIViewController{
     //the scroll view holds all the other elements
     IBOutlet UIScrollView *settings;
     //these buttons either add or remove textfields from the scrollview
@@ -18,34 +18,8 @@
     IBOutlet UITextField *qtitle;
     IBOutlet UITextField *qmin;
     IBOutlet UITextField *qmax;
-    //these elements hold the question, minimum label, and maximum label for a question, up to 9
-    IBOutlet UITextField *qst1;
-    IBOutlet UITextField *mnl1;
-    IBOutlet UITextField *mxl1;
-    UITextField *qst2;
-    UITextField *mnl2;
-    UITextField *mxl2;
-    UITextField *qst3;
-    UITextField *mnl3;
-    UITextField *mxl3;
-    UITextField *qst4;
-    UITextField *mnl4;
-    UITextField *mxl4;
-    UITextField *qst5;
-    UITextField *mnl5;
-    UITextField *mxl5;
-    UITextField *qst6;
-    UITextField *mnl6;
-    UITextField *mxl6;
-    UITextField *qst7;
-    UITextField *mnl7;
-    UITextField *mxl7;
-    UITextField *qst8;
-    UITextField *mnl8;
-    UITextField *mxl8;
-    UITextField *qst9;
-    UITextField *mnl9;
-    UITextField *mxl9;
+    //these elements hold the question, minimum label, and maximum label for a question
+    NSMutableArray *questions;
     
     //this string is parsed to store to the database as a questionnaire
     NSMutableString *ps;
@@ -72,34 +46,6 @@
     NSNumber *rangeInc;
     NSScanner *scanner;
 }
-
-@property (nonatomic, retain) IBOutlet UITextField *qst1;
-@property (nonatomic, retain) IBOutlet UITextField *mnl1;
-@property (nonatomic, retain) IBOutlet UITextField *mxl1;
-@property (nonatomic, retain) UITextField *qst2;
-@property (nonatomic, retain) UITextField *mnl2;
-@property (nonatomic, retain) UITextField *mxl2;
-@property (nonatomic, retain) UITextField *qst3;
-@property (nonatomic, retain) UITextField *mnl3;
-@property (nonatomic, retain) UITextField *mxl3;
-@property (nonatomic, retain) UITextField *qst4;
-@property (nonatomic, retain) UITextField *mnl4;
-@property (nonatomic, retain) UITextField *mxl4;
-@property (nonatomic, retain) UITextField *qst5;
-@property (nonatomic, retain) UITextField *mnl5;
-@property (nonatomic, retain) UITextField *mxl5;
-@property (nonatomic, retain) UITextField *qst6;
-@property (nonatomic, retain) UITextField *mnl6;
-@property (nonatomic, retain) UITextField *mxl6;
-@property (nonatomic, retain) UITextField *qst7;
-@property (nonatomic, retain) UITextField *mnl7;
-@property (nonatomic, retain) UITextField *mxl7;
-@property (nonatomic, retain) UITextField *qst8;
-@property (nonatomic, retain) UITextField *mnl8;
-@property (nonatomic, retain) UITextField *mxl8;
-@property (nonatomic, retain) UITextField *qst9;
-@property (nonatomic, retain) UITextField *mnl9;
-@property (nonatomic, retain) UITextField *mxl9;
 
 @property (nonatomic)  int qcount;
 
@@ -131,6 +77,22 @@
 -(IBAction)rangeInfo;
 -(void) saveQFile;
 -(void) printDatabase;
--(void) checkerrs;
+//-(void) checkerrs;
 
+@end
+
+
+@interface QuestionFields : NSObject <UITextFieldDelegate>
+{
+    UITextField *question;
+    UITextField *lowLabel;
+    UITextField *highLabel;
+}
+@property (retain, nonatomic) UITextField *question;
+@property (retain, nonatomic) UITextField *lowLabel;
+@property (retain, nonatomic) UITextField *highLabel;
+
+-(id)initAtPos:(int)x y:(int)y;
+-(void)release;
+-(void)setSuperview:(UIView*)view;
 @end

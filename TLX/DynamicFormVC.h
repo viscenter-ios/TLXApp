@@ -59,7 +59,7 @@
 -(void) printDatabase;
 -(void) generateForm;
 -(void) gohome;
--(UILabel *) makeLabelWithText: (NSString *)s withRect:(CGRect) rect withFont: (UIFont *) f alignment:(UITextAlignment )ali;
+-(UILabel *) makeLabelWithText: (NSString *)s withRect:(CGRect) rect withFont: (UIFont *) f autoResize:(UIViewAutoresizing) ar;
 -(NSString *) getDataString;
 -(NSString *) getHeader;
 

@@ -46,9 +46,9 @@
         CGRect lowLabelFrame = CGRectMake(20.0, 118 + i*70, 130.0, 17.0);
         CGRect highLabelFrame = CGRectMake(170.0, 118 + i*70, 130.0, 17.0);
     
-        [scrollView addSubview:[self makeLabelWithText:[questionLabels objectAtIndex:i]withRect:qLabelFrame withFont:questionFont alignment:UITextAlignmentCenter]];
-        [scrollView addSubview:[self makeLabelWithText:[lowLabels objectAtIndex:i] withRect:lowLabelFrame  withFont:labelFont alignment:UITextAlignmentLeft]];
-        [scrollView addSubview:[self makeLabelWithText:[highLabels objectAtIndex:i] withRect:highLabelFrame withFont:labelFont alignment: UITextAlignmentRight]];
+        [scrollView addSubview:[self makeLabelWithText:[questionLabels objectAtIndex:i]withRect:qLabelFrame withFont:questionFont autoResize:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin]];
+        [scrollView addSubview:[self makeLabelWithText:[lowLabels objectAtIndex:i] withRect:lowLabelFrame  withFont:labelFont autoResize:UIViewAutoresizingFlexibleRightMargin]];
+        [scrollView addSubview:[self makeLabelWithText:[highLabels objectAtIndex:i] withRect:highLabelFrame withFont:labelFont autoResize:UIViewAutoresizingFlexibleLeftMargin]];
     
         UISlider *tempSlider = [[UISlider alloc] initWithFrame:sliderFrame];
         NSLog(@"highRangeBound: %f", [highRangeBound floatValue]);
@@ -60,7 +60,8 @@
         [tempSlider setValue:([highRangeBound floatValue] + [lowRangeBound floatValue])/(2 * [rangeIncrement intValue]) ];
         [tempSlider setContinuous:NO];
         [tempSlider addTarget:self action:@selector(updateSlider:)forControlEvents:UIControlEventTouchUpInside];
-    
+        [tempSlider setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
         [self setSliderBars: [sliderBars arrayByAddingObject:tempSlider]];
         [self updateSlider:tempSlider];
         [scrollView addSubview:tempSlider];
@@ -72,12 +73,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
--(UILabel *) makeLabelWithText: (NSString *)s withRect:(CGRect) rect withFont: (UIFont *) f  alignment:(UITextAlignment )ali{
+-(UILabel *) makeLabelWithText: (NSString *)s withRect:(CGRect) rect withFont: (UIFont *) f  autoResize:(UIViewAutoresizing) ar{
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:rect];
     [tempLabel setText:s];
     [tempLabel setBackgroundColor:[UIColor clearColor]];
     [tempLabel setFont:f];
-    tempLabel.textAlignment = ali;
+    [tempLabel setAutoresizingMask:ar];
+    [tempLabel setTextAlignment:UITextAlignmentCenter];
     return tempLabel;
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
