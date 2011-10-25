@@ -14,5 +14,5 @@
 @interface EmailTableVC : CoreDataTableVC<MFMailComposeViewControllerDelegate> {
     
 }
-
+-(IBAction)done;
 @end

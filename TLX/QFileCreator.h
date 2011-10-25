@@ -22,7 +22,7 @@
     NSMutableArray *questions;
     
     //this string is parsed to store to the database as a questionnaire
-    NSMutableString *ps;
+    //NSMutableString *ps;
     //this interval is used when adding questions to the "ps" string
     int qcount;
     
@@ -72,12 +72,11 @@
 
 -(IBAction)addQuestion;
 -(IBAction)removeQuestion;
+-(IBAction)save;
 -(IBAction)done;
--(IBAction)cancel;
 -(IBAction)rangeInfo;
--(void) saveQFile;
--(void) printDatabase;
-//-(void) checkerrs;
+-(void)printDatabase;
+-(BOOL)isComplete;
 
 @end
 
@@ -87,12 +86,17 @@
     UITextField *question;
     UITextField *lowLabel;
     UITextField *highLabel;
+    int x;
+    int y;
 }
 @property (retain, nonatomic) UITextField *question;
 @property (retain, nonatomic) UITextField *lowLabel;
 @property (retain, nonatomic) UITextField *highLabel;
+@property (nonatomic) int x;
+@property (nonatomic) int y;
 
--(id)initAtPos:(int)x y:(int)y;
+-(id)initAtPosX:(int)x Y:(int)y;
 -(void)release;
 -(void)setSuperview:(UIView*)view;
+-(BOOL)isComplete;
 @end

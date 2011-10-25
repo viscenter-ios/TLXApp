@@ -22,25 +22,26 @@
 //context from main.
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
-  entityName = @"Experiment";
-  keyName = @"fileName";
-  dataString = @"dataString";
+    [super viewDidLoad];
+    entityName = @"Experiment";
+    keyName = @"fileName";
+    dataString = @"dataString";
 	self.title = @"Files";
-	[self.navigationController setNavigationBarHidden: FALSE];
 	if(self.moContext == nil){
 		self.moContext = [(TLXAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
 	}
 	
-  UIBarButtonItem *item = [[UIBarButtonItem alloc]   
-                           initWithTitle:@"Edit"
+    // Here it is. Finally found it.
+    /*[self.navigationController setNavigationBarHidden: FALSE];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Edit"
                            style: UIBarButtonItemStyleBordered
-                           target:self   
-                           action:@selector(edit)];
+                          target:self   
+                          action:@selector(edit)];
   
-  self.navigationItem.rightBarButtonItem = item;  
+    self.navigationItem.rightBarButtonItem = item;
 	
-  [item release];
+  [item release];*/
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 //This function swaps the value of the tableviews editing property, which occurs when the

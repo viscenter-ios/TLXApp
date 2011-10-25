@@ -16,5 +16,4 @@
   IBOutlet UITextField *fileNameText;
 }
 -(IBAction) hideKeyboard: (UITextField *) text;
--(IBAction) newQf;
 @end

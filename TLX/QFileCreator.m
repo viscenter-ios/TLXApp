@@ -24,46 +24,115 @@ int qcount;
 	[super viewDidLoad];
     [self becomeFirstResponder];
     self.title = @"New Questionnaire";
-    settings.frame = CGRectMake(0, 44, 320, 416);
-    settings.contentSize = CGSizeMake(320, 417);
     [self.view addSubview:settings];
-    [self addQuestion];
+    [self.view layoutIfNeeded];
+    
     // Initialize question array
     questions = [[NSMutableArray alloc] init];
+    [self addQuestion];
+    
+    // Register keyboard observers
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
+-(void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+///////////////////////////////////////////////////////////////////////////////////////////
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+///////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    
+    // Get the size of the keyboard.
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // Adjust the bottom content inset of your scroll view by the keyboard height.
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    settings.contentInset = contentInsets;
+    settings.scrollIndicatorInsets = contentInsets;
+    
+    // Scroll the target text field into view.
+    //CGRect aRect = self.view.frame;
+    //aRect.size.height -= keyboardSize.height;
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+-(void) keyboardWillHide: (NSNotification *)notification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    settings.contentInset = contentInsets;
+    settings.scrollIndicatorInsets = contentInsets;
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //This function handles the action when the user selects the "Add Question" button I've only commented one of the initializations, because it's quite repetitive
--(IBAction)addQuestion{
-    NSLog(@"addQuestion");
-    
-    // TODO: fix magic numbers (110 is the height above the first question, 90 is the height of a question object)
-    QuestionFields *question = [[QuestionFields alloc] initAtPos:20 y:110+90*[questions count]];
+-(IBAction)addQuestion{    
+    // TODO: fix magic numbers (110 is the height above the first question, 80 is the height of a question object)
+    QuestionFields *question = [[QuestionFields alloc] initAtPosX: 20
+                                                                Y: 110+80*[questions count]];
+    [question setSuperview:settings];
     [questions addObject:question];
     
-    [question setSuperview:settings];
     
-    //this is code for a basic
+    // Start animation
     [UIView beginAnimations:@"Move" context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    //this is where you put anything you want the animation to change
-    //resize the scrollview to fit the new elements
-    settings.contentSize = CGSizeMake(320, settings.contentSize.height+90);
-    //adjust the add button, moving it down and resizing it to make room for...
-    addButton.frame = CGRectMake(20, addButton.frame.origin.y+90, 130, 40);
-    //... the remove button!, just fading in
-    removeButton.frame = CGRectMake(170, removeButton.frame.origin.y+90, 130, 40);
-    removeButton.alpha = 1.0;
+    
+    // Resize the scrollview to fit the new elements
+    settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height+80);
+    settings.contentSize = CGSizeMake(settings.contentSize.width, settings.contentSize.height+80);
+    
+    // Manage the add and remove buttonss
+    int contentWidth = [settings frame].size.width-2*20;
+    int halfWidth = contentWidth*(130.0/280.0);
+    int spacerWidth = contentWidth*(20.0/280.0);
+    
+    if([questions count]==1)
+    {
+        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y+80, halfWidth, 40);
+        addButton.frame = CGRectMake(20, addButton.frame.origin.y+80, contentWidth, 40);
+        removeButton.alpha = 0.0;
+    }
+    else
+    {
+        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y+80, halfWidth, 40);
+        addButton.frame = CGRectMake(20, addButton.frame.origin.y+80, halfWidth, 40);
+        removeButton.alpha = 1.0;
+    }
+    
     //fade in all the textfields
     question.question.alpha = 1.0;
     question.lowLabel.alpha = 1.0;
     question.highLabel.alpha = 1.0;
     [UIView commitAnimations];
+    [self.view layoutIfNeeded];
+
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -85,29 +154,90 @@ int qcount;
     [questions removeLastObject];
     
     //change the size of the scrollview and move the buttons accordingly
-    settings.contentSize = CGSizeMake(settings.contentSize.width, settings.contentSize.height-90);
+    settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height-80);
+    settings.contentSize = CGSizeMake(settings.contentSize.width, settings.contentSize.height-80);
+    
+    int contentWidth = [settings frame].size.width-2*20;
+    int halfWidth = contentWidth*(130.0/280.0);
+    int spacerWidth = contentWidth*(20.0/280.0);
+
     if([questions count]==1)
     {
-        removeButton.frame = CGRectMake(170, removeButton.frame.origin.y-90, 130, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y-90, 280, 40);
+        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y-80, halfWidth, 40);
+        addButton.frame = CGRectMake(20, addButton.frame.origin.y-80, contentWidth, 40);
         removeButton.alpha = 0.0;
     }
     else
     {
-        removeButton.frame = CGRectMake(170, removeButton.frame.origin.y-90, 130, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y-90, 130, 40);
+        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y-80, halfWidth, 40);
+        addButton.frame = CGRectMake(20, addButton.frame.origin.y-80, halfWidth, 40);
         removeButton.alpha = 1.0;
     }
     [UIView commitAnimations];
+    [self.view layoutIfNeeded];
+
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-    //This function uses the NSScanner class to parse the question file provided and extract the necessary information. I had some issue with memory management in this function,so it is a bit longer than I had hoped.
--(void)parseQFile {
-    scanner = [NSScanner scannerWithString:ps];
+    //Used for debugging.
+- (void) printDatabase {
+	NSError *error;
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"QFile"
+                                              inManagedObjectContext:moContext];
+	[fetchRequest setEntity: entity];
+	NSArray *fetchedObjects = [moContext executeFetchRequest:fetchRequest error:&error];
+	if([fetchedObjects count] == 0) NSLog(@"empty");
+	for(NSManagedObject *info in fetchedObjects) {
+		NSLog(@"Title: %@", [info valueForKey:@"title"]);
+		NSLog(@"Question Names: %@", [info valueForKey:@"questionNames"]);
+        NSNumber *temp = [info valueForKey:@"rangeLowerBound"];
+        NSLog(@"lower: %d", [temp intValue]);
+	}
+	[fetchRequest release];
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+    //This function returns the view to its original size when the keyboard hides
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    //settings.frame = CGRectMake(0, 44, 320, 416);
+}
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+
+
+-(NSMutableString *)getQString{
+    
+    //this creates the string to be parsed and put in the coredata
+    NSMutableString *ps = [NSMutableString stringWithFormat:@"TITLE %@\n\nQUESTIONS_PER_FRAME%u\n\nRANGE %u %u\n\nRANGE_INCREMENT 1\n\n", [qtitle text], [questions count], [[qmin text] intValue], [[qmax text] intValue]];
+    for(int i=0; i<[questions count]; i++)
+    {
+        QuestionFields *qf = [questions objectAtIndex:i];
+        [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [[qf question] text], [[qf lowLabel] text], [[qf highLabel] text]]];
+    }
+    return ps;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//This function uses the NSScanner class to parse the question file provided and extract the necessary information. I had some issue with memory management in this function,so it is a bit longer than I had hoped.
+-(void)parseQString: (NSMutableString *)qString {
+    scanner = [NSScanner scannerWithString:qString];
     
     questionNames = @"";
     lowLabelNames = @"";
@@ -153,7 +283,6 @@ int qcount;
         [self setLowLabelNames:[lowLabelNames stringByAppendingFormat:@"%@\n", qLowLabel]];
         [self setHighLabelNames:[highLabelNames stringByAppendingFormat:@"%@\n", qHighLabel]];
     }
-    [self saveQFile];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -161,8 +290,8 @@ int qcount;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-    //This Function saves the information into coredata under the propery keys. See the DynamicFormVC for more information.
--(void) saveQFile {
+//This Function saves the information into coredata under the propery keys. See the DynamicFormVC for more information.
+-(void) writeQString {
     if(moContext == nil){
         moContext = 
         [(TLXAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
@@ -195,7 +324,7 @@ int qcount;
 	}
     
     //Finally, we save our changes to the managed object context.
-	if([moContext save:&error]){
+	if(![moContext save:&error]){
         
 	}
     [self printDatabase];
@@ -204,215 +333,61 @@ int qcount;
 
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //Used for debugging.
-- (void) printDatabase {
-	NSError *error;
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"QFile"
-                                              inManagedObjectContext:moContext];
-	[fetchRequest setEntity: entity];
-	NSArray *fetchedObjects = [moContext executeFetchRequest:fetchRequest error:&error];
-	if([fetchedObjects count] == 0) NSLog(@"empty");
-	for(NSManagedObject *info in fetchedObjects) {
-		NSLog(@"Title: %@", [info valueForKey:@"title"]);
-		NSLog(@"Question Names: %@", [info valueForKey:@"questionNames"]);
-        NSNumber *temp = [info valueForKey:@"rangeLowerBound"];
-        NSLog(@"lower: %d", [temp intValue]);
-	}
-	[fetchRequest release];
-}
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //This function returns the view to its original size when the keyboard hides
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    settings.frame = CGRectMake(0, 44, 320, 416);
-}
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////
     //this function checks for errors and handles them by either dismissing the view or showing the user the error
--(IBAction)done{
+-(IBAction)save{
     //if(([[qst1 text] length] != 0) || ([[mnl1 text] length] != 0) || ([[mxl1 text] length] != 0)){
     //    qcount = 1;
     //}
     //[self checkerrs];
     
-    [self resignFirstResponder];
-    [self parseQFile];
-    [self dismissModalViewControllerAnimated:YES];
+    
+    UIAlertView* alert;
+    if(![self isComplete]){
+        alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"All questions must be filled out." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    [self parseQString:[self getQString]];
+    [self writeQString];
+    //[self resignFirstResponder];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    alert = [[UIAlertView alloc] initWithTitle:@"Saved" message:@"Questionnaire saved." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+    [alert show];
+    [alert release];
+    return;
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 
 
-/*
-///////////////////////////////////////////////////////////////////////////////////////////
--(void)checkerrs{
-    BOOL error = NO;
-    int errCnt = 0;
-    NSString* errMsg = @"The following errors were found:\n";
-    UIAlertView* alert;
+-(BOOL)isComplete{
     NSPredicate* isNumeric = [NSPredicate predicateWithFormat:@"SELF MATCHES '^[0-9]+$'"];
     
-    //These statements check the text fields that are required to be filled in.
-    if([[qtitle text] length] == 0){
-        errMsg = [errMsg stringByAppendingFormat:
-                  @"%d. Questionnaire title cannot be empty\n", ++errCnt];
-        error = YES;
+    if([[qtitle text] length] <= 0)
+    {
+        return NO;
     }
-    if(![isNumeric evaluateWithObject:[qmin text]]){
-        errMsg = [errMsg stringByAppendingFormat:
-                  @"%d. Minimum data range must be an integer.\n", ++errCnt];
-        error = YES;
+    if(![isNumeric evaluateWithObject:[qmin text]])
+    {
+        return NO;
     }
-    if(![isNumeric evaluateWithObject:[qmax text]]){
-        errMsg = [errMsg stringByAppendingFormat:
-                  @"%d. Maximum data range must be an integer.\n", ++errCnt];
-        error = YES;
+    if(![isNumeric evaluateWithObject:[qmax text]])
+    {
+        return NO;
     }
-    
-    if([[qst1 text] length] == 0){
-        errMsg = [errMsg stringByAppendingFormat:@"%d. Question (one) title cannot be empty\n", ++errCnt];
-        error = YES;
-    }
-    if([[mnl1 text] length] == 0){
-        errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (one) cannot be empty.\n", ++errCnt];
-        error = YES;
-    }
-    if([[mxl1 text] length] == 0){
-        errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (one) cannot be empty.\n", ++errCnt];
-        error = YES;
-    }
-    
-    if(qcount >= 2){
-        if([[qst2 text] length] == 0){
-            errMsg = [errMsg stringByAppendingFormat:@"%d. Question (two) title cannot be empty\n", ++errCnt];
-            error = YES;
-        }
-        if([[mnl2 text] length] == 0){
-            errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (two) cannot be empty.\n", ++errCnt];
-            error = YES;
-        }
-        if([[mxl2 text] length] == 0){
-            errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (two) cannot be empty.\n", ++errCnt];
-            error = YES;
-        }
-        if(qcount >= 3){
-            if([[qst3 text] length] == 0){
-                errMsg = [errMsg stringByAppendingFormat:@"%d. Question (three) title cannot be empty\n", ++errCnt];
-                error = YES;
-            }
-            if([[qst3 text] length] == 0){
-                errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (three) cannot be empty.\n", ++errCnt];
-                error = YES;
-            }
-            if([[qst3 text] length] == 0){
-                errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (three) cannot be empty.\n", ++errCnt];
-                error = YES;
-            }
-            if(qcount >= 4){
-                if([[qst4 text] length] == 0){
-                    errMsg = [errMsg stringByAppendingFormat:@"%d. Question (four) title cannot be empty\n", ++errCnt];
-                    error = YES;
-                }
-                if([[qst4 text] length] == 0){
-                    errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (four) cannot be empty.\n", ++errCnt];
-                    error = YES;
-                }
-                if([[qst4 text] length] == 0){
-                    errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (four) cannot be empty.\n", ++errCnt];
-                    error = YES;
-                }
-                if(qcount >= 5){
-                    if([[qst5 text] length] == 0){
-                        errMsg = [errMsg stringByAppendingFormat:@"%d. Question (five) title cannot be empty\n", ++errCnt];
-                        error = YES;
-                    }
-                    if([[qst5 text] length] == 0){
-                        errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (five) cannot be empty.\n", ++errCnt];
-                        error = YES;
-                    }
-                    if([[qst5 text] length] == 0){
-                        errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (five) cannot be empty.\n", ++errCnt];
-                        error = YES;
-                    }
-                    if(qcount >= 6){
-                        if([[qst6 text] length] == 0){
-                            errMsg = [errMsg stringByAppendingFormat:@"%d. Question (six) title cannot be empty\n", ++errCnt];
-                            error = YES;
-                        }
-                        if([[qst6 text] length] == 0){
-                            errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (six) cannot be empty.\n", ++errCnt];
-                            error = YES;
-                        }
-                        if([[qst6 text] length] == 0){
-                            errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (six) cannot be empty.\n", ++errCnt];
-                            error = YES;
-                        }
-                        if(qcount >= 7){
-                            if([[qst7 text] length] == 0){
-                                errMsg = [errMsg stringByAppendingFormat:@"%d. Question (seven) title cannot be empty\n", ++errCnt];
-                                error = YES;
-                            }
-                            if([[qst7 text] length] == 0){
-                                errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (seven) cannot be empty.\n", ++errCnt];
-                                error = YES;
-                            }
-                            if([[qst7 text] length] == 0){
-                                errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (seven) cannot be empty.\n", ++errCnt];
-                                error = YES;
-                            }
-                            if(qcount >= 8){
-                                if([[qst8 text] length] == 0){
-                                    errMsg = [errMsg stringByAppendingFormat:@"%d. Question (eight) title cannot be empty\n", ++errCnt];
-                                    error = YES;
-                                }
-                                if([[qst8 text] length] == 0){
-                                    errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (eight) cannot be empty.\n", ++errCnt];
-                                    error = YES;
-                                }
-                                if([[qst8 text] length] == 0){
-                                    errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (eight) cannot be empty.\n", ++errCnt];
-                                    error = YES;
-                                }
-                                if(qcount >= 9){
-                                    if([[qst9 text] length] == 0){
-                                        errMsg = [errMsg stringByAppendingFormat:@"%d. Question (nine) title cannot be empty\n", ++errCnt];
-                                        error = YES;
-                                    }
-                                    if([[qst9 text] length] == 0){
-                                        errMsg = [errMsg stringByAppendingFormat:@"%d. Minimum label (nine) cannot be empty.\n", ++errCnt];
-                                        error = YES;
-                                    }
-                                    if([[qst9 text] length] == 0){
-                                        errMsg = [errMsg stringByAppendingFormat:@"%d. Maximum label (nine) cannot be empty.\n", ++errCnt];
-                                        error = YES;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+    for(int i=0; i<[questions count]; i++)
+    {
+        if(![[questions objectAtIndex:i ] isComplete])
+        {
+            return NO;
         }
     }
-    
+    return YES;
+}
+
+/*
     //If an error was found, an alert is presented with error details and return.
     if(error){
         alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -420,50 +395,14 @@ int qcount;
         [alert release];
         return;
     }
-    
-    
-    
-    [self resignFirstResponder];
-    //this creates the string to be parsed and put in the coredata
-    ps = [NSMutableString stringWithFormat:@"TITLE %@\n\nQUESTIONS_PER_FRAME%u\n\nRANGE %u %u\n\nRANGE_INCREMENT 1\n\nQUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qtitle text], qcount, [[qmin text] intValue], [[qmax text] intValue], [qst1 text], [mnl1 text], [mxl1 text]];
-    if(qcount >= 2){
-        [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst2 text], [mnl2 text], [mxl2 text]]];
-        if(qcount >= 3){
-            [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst3 text], [mnl3 text], [mxl3 text]]];
-            if(qcount >= 4){
-                [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst4 text], [mnl4 text], [mxl4 text]]];
-                if(qcount >= 5){
-                    [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst5 text], [mnl5 text], [mxl5 text]]];
-                    if(qcount >= 6){
-                        [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst6 text], [mnl6 text], [mxl6 text]]];
-                        if(qcount >= 7){
-                            [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst7 text], [mnl7 text], [mxl7 text]]];
-                            if(qcount >= 8){
-                                [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst8 text], [mnl8 text], [mxl8 text]]];
-                                if(qcount >= 9){
-                                    [ps appendString:[NSString stringWithFormat:@"QUESTION %@\n\nRANGE_MIN_LABEL %@\n\nRANGE_MAX_LABEL %@\n\n", [qst9 text], [mnl9 text], [mxl9 text]]];
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    [self parseQFile];
-    [self dismissModalViewControllerAnimated:YES];
-    NSLog(@"ps: %@", ps);
-    NSLog(@"done");
-}
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 */
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //If the user cancels, we just dismiss the view controller without saving anything. that's all, nothing to see here.  but really...
--(IBAction)cancel{
-    [self dismissModalViewControllerAnimated:YES];
+-(IBAction) done
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -487,14 +426,17 @@ int qcount;
 
 @implementation QuestionFields
 
-@synthesize question,lowLabel,highLabel;
+@synthesize question,lowLabel,highLabel,x,y;
 
--(id)initAtPos:(int)x y:(int)y
+-(id)initAtPosX:(int)x Y:(int)y
 {
     if (self = [super init])
     {
-        //allocate memory, initialize, and set the frame
-        question = [[UITextField alloc] initWithFrame: CGRectMake(x, y, 280, 31)];
+        [self setX:x];
+        [self setY:y];
+        
+        //allocate memory, initialize
+        question = [[UITextField alloc] init];
         
         //set up style
         question.borderStyle = UITextBorderStyleRoundedRect;
@@ -526,8 +468,7 @@ int qcount;
         // Make sure the view resizes properly
         question.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth;
         
-        lowLabel = [[UITextField alloc] initWithFrame: CGRectMake(x, y+39, 130, 31)];
-        lowLabel.alpha = 0.0;
+        lowLabel = [[UITextField alloc] init];
         lowLabel.delegate = self;
         lowLabel.borderStyle = UITextBorderStyleRoundedRect;
 		lowLabel.textColor = [UIColor blackColor];
@@ -541,8 +482,7 @@ int qcount;
         lowLabel.delegate = self;
         lowLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleWidth;
         
-        highLabel = [[UITextField alloc] initWithFrame: CGRectMake(x+150, y+39, 130, 31)];
-        highLabel.alpha = 0.0;
+        highLabel = [[UITextField alloc] init];
         highLabel.delegate = self;
         highLabel.borderStyle = UITextBorderStyleRoundedRect;
 		highLabel.textColor = [UIColor blackColor];
@@ -580,6 +520,15 @@ int qcount;
     [view addSubview:question];
     [view addSubview:lowLabel];
     [view addSubview:highLabel];
+    
+    // Magic numbers again @_@
+    int contentWidth = [view frame].size.width-2*x;
+    int halfWidth = contentWidth*(130.0/280.0);
+    int spacerWidth = contentWidth*(20.0/280.0);
+    [question setFrame:CGRectMake(x, y, contentWidth, 30)];
+    [lowLabel setFrame:CGRectMake(x, y+40, halfWidth, 30)];
+    [highLabel setFrame:CGRectMake(x+halfWidth+spacerWidth, y+40, halfWidth, 30)];
+    
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -600,18 +549,19 @@ int qcount;
     return YES;
 }
 
-//This function shrinks the view to fit the screen when the keyboard is visible.
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    //Code for animation
-    //[UIView beginAnimations:@"Move" context:nil];
-    //[UIView setAnimationDuration:.3];
-    //[UIView setAnimationBeginsFromCurrentState:YES];
-    //The new size the view has to be when the keyboard shows
-    //settings.frame = CGRectMake(0, 44, 320, 200);
-    //[UIView commitAnimations];
-    
-    //Now scroll the view to the proper location for the textField
-    //[settings setContentOffset:CGPointMake(0, textField.frame.origin.y - 20) animated:YES];
+-(BOOL)isComplete{
+    if([[question text] length] <= 0)
+    {
+        return NO;
+    }
+    if([[lowLabel text] length] <= 0)
+    {
+        return NO;
+    }
+    if([[highLabel text] length] <= 0)
+    {
+        return NO;
+    }
+    return YES;
 }
-
 @end

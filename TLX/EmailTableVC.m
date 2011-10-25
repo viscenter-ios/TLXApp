@@ -67,5 +67,9 @@
 	[self dismissModalViewControllerAnimated:YES];
    
 }
+
+-(IBAction)done {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
    
 @end

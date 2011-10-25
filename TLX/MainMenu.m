@@ -10,6 +10,7 @@
 #import "AppendTableVC.h"
 #import "EmailTableVC.h"
 #import "SettingsVC.h"
+#import "QFileCreator.h"
 
 @implementation MainMenu
 
@@ -38,6 +39,13 @@
   [self.navigationController pushViewController:about animated:YES];
   
 }
+
+-(IBAction) newQf{
+    QFileCreator *qf = [[QFileCreator alloc] init];
+    [self.navigationController pushViewController:qf animated:YES];
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

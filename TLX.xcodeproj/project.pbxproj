@@ -187,6 +187,7 @@
 		D0F68539139830A9001CF136 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0F68552139830A9001CF136 /* MainWindow_iPad.xib */,
 				D0F6853A139830A9001CF136 /* TLX-Info.plist */,
 				D0F6853B139830A9001CF136 /* InfoPlist.strings */,
 				D0F6853E139830A9001CF136 /* TLX-Prefix.pch */,
@@ -210,7 +211,6 @@
 			children = (
 				D0F6854F139830A9001CF136 /* TLXAppDelegate_iPad.h */,
 				D0F68550139830A9001CF136 /* TLXAppDelegate_iPad.m */,
-				D0F68552139830A9001CF136 /* MainWindow_iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";

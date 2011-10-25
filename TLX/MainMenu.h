@@ -17,5 +17,6 @@
 -(IBAction) emailData;
 -(IBAction) goToAbout;
 -(IBAction) goToDownload;
+-(IBAction) newQf;
 
 @end
