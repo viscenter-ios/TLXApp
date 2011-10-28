@@ -79,7 +79,7 @@ The full NASA-TLX in this format can be found at the bottom of this file.
 -(IBAction) saveQFile;
 -(IBAction) downloadQFile;
 -(void) printDatabase;
--(IBAction) goToMain;
+-(IBAction) done;
 - (IBAction)hideKeyboard: (UITextField*)text;
 @end
 

@@ -16,4 +16,5 @@
   IBOutlet UITextField *fileNameText;
 }
 -(IBAction) hideKeyboard: (UITextField *) text;
+-(IBAction) done;
 @end

@@ -8,7 +8,7 @@
 
 
 
-@interface QFileCreator : UIViewController{
+@interface QFileCreator : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>{
     //the scroll view holds all the other elements
     IBOutlet UIScrollView *settings;
     //these buttons either add or remove textfields from the scrollview
@@ -45,6 +45,7 @@
     NSNumber *highRange;
     NSNumber *rangeInc;
     NSScanner *scanner;
+    BOOL needsSaved;
 }
 
 @property (nonatomic)  int qcount;
@@ -86,6 +87,7 @@
     UITextField *question;
     UITextField *lowLabel;
     UITextField *highLabel;
+    CGPoint svos;
     int x;
     int y;
 }
@@ -97,6 +99,6 @@
 
 -(id)initAtPosX:(int)x Y:(int)y;
 -(void)release;
--(void)setSuperview:(UIView*)view;
+-(void)setSuperview:(UIScrollView*)view;
 -(BOOL)isComplete;
 @end

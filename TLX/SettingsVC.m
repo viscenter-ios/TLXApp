@@ -19,6 +19,9 @@
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
+-(IBAction) done {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //This functon initiates the transition to the next view. It first checks that the text data on the page is valid, then grabs the information from the selected QFile and pushes the properly initialized DynamicFormVC onto the stack.

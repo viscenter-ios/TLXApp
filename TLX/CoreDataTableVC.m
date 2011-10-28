@@ -47,7 +47,7 @@
 //This function swaps the value of the tableviews editing property, which occurs when the
 //edit button is pressed. While editing is true, the entries can be removed from the table
 //by pressing the red minus button and then pressing delete.
--(void) edit
+-(IBAction) edit
 {
 	self.tableView.editing = !self.tableView.editing;
 }

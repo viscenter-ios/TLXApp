@@ -18,5 +18,5 @@
 
 @property (nonatomic, retain) IBOutlet UIWebView *aboutWebView;
 @property (nonatomic, retain) IBOutlet UIImageView *bgImage;
--(IBAction) goToMain;
+-(IBAction) done;
 @end

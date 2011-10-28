@@ -170,7 +170,7 @@
 	[text resignFirstResponder];
 }
 
--(IBAction) goToMain
+-(IBAction) done
 {
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

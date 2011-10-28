@@ -95,6 +95,10 @@
 	[text resignFirstResponder];
 }
 
+-(IBAction) done {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
     //Make sure we don't rotate the view into a landscape mode and mess everything up
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

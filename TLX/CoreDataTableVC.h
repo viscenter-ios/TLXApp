@@ -37,6 +37,7 @@
 @property (nonatomic, retain) NSString *csvFileName;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
+-(IBAction) edit;
 -(void) fetchRecords;
 -(NSManagedObject *) objForIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -23,7 +23,7 @@
     NSString *questionFileName;
   
     IBOutlet UIScrollView *scrollView;
-    IBOutlet UILabel *trialText;
+    IBOutlet UINavigationItem *trialText;
     IBOutlet UITextField *addInfoText;
   
     NSString *fileName;
@@ -37,7 +37,7 @@
 @property (nonatomic, retain) NSString *fileName;
 @property (nonatomic, retain) NSString *subjectName;
 @property (nonatomic) int trialNum;
-@property (nonatomic, retain) UILabel *trialText;
+@property (nonatomic, retain) UINavigationItem *trialText;
 @property (nonatomic, retain) UITextField *addInfoText;
 @property (nonatomic, retain) NSManagedObjectContext *moContext;
 @property (nonatomic, retain) NSArray *questionLabels;
@@ -51,14 +51,14 @@
 
 
 -(IBAction) hideKeyboard: (UITextField*)text;
--(void) nextEntry;
+-(IBAction) nextEntry;
 -(IBAction) updateSlider: (UISlider *) slider;
+-(IBAction) done;
 -(void) resetAndUpdateState;
 -(void) setTrialTextValue: (NSString *) s;
 -(void) saveData;
 -(void) printDatabase;
 -(void) generateForm;
--(void) gohome;
 -(UILabel *) makeLabelWithText: (NSString *)s withRect:(CGRect) rect withFont: (UIFont *) f autoResize:(UIViewAutoresizing) ar;
 -(NSString *) getDataString;
 -(NSString *) getHeader;

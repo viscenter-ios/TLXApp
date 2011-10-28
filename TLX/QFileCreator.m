@@ -26,21 +26,17 @@ int qcount;
     self.title = @"New Questionnaire";
     [self.view addSubview:settings];
     [self.view layoutIfNeeded];
+    needsSaved = YES;
     
     // Initialize question array
     questions = [[NSMutableArray alloc] init];
     [self addQuestion];
     
-    // Register keyboard observers
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
+    // Make keyboard close correctly
+    [qtitle setDelegate:self];
+    [qmin setDelegate:self];
+    [qmax setDelegate:self];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -50,7 +46,7 @@ int qcount;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\    
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc
@@ -60,34 +56,23 @@ int qcount;
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-///////////////////////////////////////////////////////////////////////////////////////////
-- (void)keyboardWasShown:(NSNotification *)notification
-{
-    
-    // Get the size of the keyboard.
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    // Adjust the bottom content inset of your scroll view by the keyboard height.
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
-    settings.contentInset = contentInsets;
-    settings.scrollIndicatorInsets = contentInsets;
-    
-    // Scroll the target text field into view.
-    //CGRect aRect = self.view.frame;
-    //aRect.size.height -= keyboardSize.height;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    if (textField == qmin) {
+        [qmax becomeFirstResponder];
+    }
+    return NO;
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
--(void) keyboardWillHide: (NSNotification *)notification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    settings.contentInset = contentInsets;
-    settings.scrollIndicatorInsets = contentInsets;
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex==0) {
+        return;
+    }
+    else
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //This function handles the action when the user selects the "Add Question" button I've only commented one of the initializations, because it's quite repetitive
@@ -105,8 +90,8 @@ int qcount;
     [UIView setAnimationBeginsFromCurrentState:YES];
     
     // Resize the scrollview to fit the new elements
-    settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height+80);
-    settings.contentSize = CGSizeMake(settings.contentSize.width, settings.contentSize.height+80);
+    //settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height+80);
+    settings.contentSize = CGSizeMake(settings.contentSize.width, 30+110+[questions count]*80);
     
     // Manage the add and remove buttonss
     int contentWidth = [settings frame].size.width-2*20;
@@ -131,7 +116,6 @@ int qcount;
     question.lowLabel.alpha = 1.0;
     question.highLabel.alpha = 1.0;
     [UIView commitAnimations];
-    [self.view layoutIfNeeded];
 
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -154,8 +138,8 @@ int qcount;
     [questions removeLastObject];
     
     //change the size of the scrollview and move the buttons accordingly
-    settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height-80);
-    settings.contentSize = CGSizeMake(settings.contentSize.width, settings.contentSize.height-80);
+    //settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height-80);
+    settings.contentSize = CGSizeMake(settings.contentSize.width, 40+110+[questions count]*80);
     
     int contentWidth = [settings frame].size.width-2*20;
     int halfWidth = contentWidth*(130.0/280.0);
@@ -173,8 +157,7 @@ int qcount;
         addButton.frame = CGRectMake(20, addButton.frame.origin.y-80, halfWidth, 40);
         removeButton.alpha = 1.0;
     }
-    [UIView commitAnimations];
-    [self.view layoutIfNeeded];
+    [UIView commitAnimations];  
 
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -198,23 +181,6 @@ int qcount;
         NSLog(@"lower: %d", [temp intValue]);
 	}
 	[fetchRequest release];
-}
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-    //This function returns the view to its original size when the keyboard hides
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    //settings.frame = CGRectMake(0, 44, 320, 416);
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -356,6 +322,7 @@ int qcount;
     alert = [[UIAlertView alloc] initWithTitle:@"Saved" message:@"Questionnaire saved." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
     [alert show];
     [alert release];
+    needsSaved = NO;
     return;
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -402,7 +369,14 @@ int qcount;
     //If the user cancels, we just dismiss the view controller without saving anything. that's all, nothing to see here.  but really...
 -(IBAction) done
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if(needsSaved)
+    {
+        UIAlertView *info;
+        info = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You have not saved your questionnaire. Exit Anyway?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        [info show];
+        [info release];
+        return;
+    }
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
@@ -411,15 +385,11 @@ int qcount;
     //this displays an explanation in an alert if the user clicks the "i" next to data range
 -(IBAction)rangeInfo{
     UIAlertView *info;
-    info = [[UIAlertView alloc] initWithTitle:@"Info" message:@"When you use the questionnaire, a slider will appear for data collection.  Specify the minimum and maximum values for the slider." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    info = [[UIAlertView alloc] initWithTitle:@"Info" message:@"When you use the questionnaire, a slider will appear for data collection.  Specify the minimum and maximum values for the slider." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     [info show];
     [info release];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
-
 
 
 @end
@@ -444,7 +414,7 @@ int qcount;
 		question.font = [UIFont systemFontOfSize:14.0];
         
         //this shows up "grayed out" before editing begins, almost like... a placeholder!
-		question.placeholder = @"Question two title";
+		question.placeholder = @"Question title";
         
         //delicious background color
         // TODO: change this to be the owner's background color
@@ -513,7 +483,7 @@ int qcount;
     
 }
 
--(void)setSuperview:(UIView*)view
+-(void)setSuperview:(UIScrollView*)view
 {
     
     //all the subviews have to be added to the scrollview
@@ -535,17 +505,41 @@ int qcount;
     return YES;
 }
 
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    UIScrollView * owner = (UIScrollView *)[question superview];
+    svos = owner.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textField bounds];
+    rc = [textField convertRect:rc toView:owner];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= 40;
+    NSLog(@"(%f,%f)",pt.x, pt.y);
+    if([owner contentOffset].y != pt.y )
+    {
+        [owner setContentOffset:pt animated:NO];
+    }
+}
+
 //When the user clicks the return key (which says next) this function is called.  It moves the user to the next field, unless they are editing the last field
--(BOOL)textFieldShouldReturn:(UITextField *)sender {
-    [sender resignFirstResponder];
-    if(sender == question)
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    if(textField == question)
     {
         [lowLabel becomeFirstResponder];
     }
-    else if(sender == lowLabel)
+    else if(textField == lowLabel)
     {
         [highLabel becomeFirstResponder];
     }
+    return YES;
+}
+
+
+-(void) textFieldDidEndEditing:(UITextField *) textField {
+    UIScrollView * owner = (UIScrollView *)[question superview]; 
+    [owner setContentOffset:svos animated:NO];
     return YES;
 }
 

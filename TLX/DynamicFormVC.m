@@ -16,7 +16,6 @@
     //Here we initialize some necessary values and set the size of the scrollview.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    scrollView.frame = CGRectMake(0, 0, 320, 416);
     scrollView.contentSize = CGSizeMake(320, ([numOfQuestions intValue] * 70) + 100);
     NSLog(@"ScrollView height:%u", ([numOfQuestions intValue] * 70)+100);
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save Trial" style: UIBarButtonItemStyleBordered target:self action:@selector(nextEntry)];
@@ -28,7 +27,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     self.title = subjectName;   
-    [trialText setText: [NSString stringWithFormat:@"Trial Number %d",trialNum]];
+    [trialText setTitle: [NSString stringWithFormat:@"Trial Number %d",trialNum]];
 }
 
 
@@ -95,7 +94,7 @@
         [self updateSlider:s];
     }
     trialNum++;
-    [trialText setText: [NSString stringWithFormat:@"Trial Number %d", trialNum]];
+    [trialText setTitle: [NSString stringWithFormat:@"Trial Number %d", trialNum]];
     [scrollView setContentOffset:CGPointZero];
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -106,14 +105,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //This function makes sure the trial id is not empty and an integer, then saves the data and resets the form.
--(void) nextEntry{
+-(IBAction) nextEntry{
     BOOL error = NO;
     int errCnt = 0;
     NSString* errMsg = @"The following errors were found:\n";
     UIAlertView* alert;
     
     //These statements check the text fields that are required to be filled in.
-    if([[trialText text] length] == 0){
+    if([[trialText title] length] == 0){
         errMsg = [errMsg stringByAppendingFormat:
               @"%d. Trial ID cannot be empty\n", ++errCnt];
         error = YES;
@@ -125,10 +124,6 @@
         [alert show];
         [alert release];
         return;
-    }
-    if(!self.navigationItem.hidesBackButton){
-        [self.navigationItem setHidesBackButton:YES animated:YES];
-        [self.navigationItem setLeftBarButtonItem: [[UIBarButtonItem alloc] initWithTitle:@"Home" style: UIBarButtonItemStyleBordered target:self action:@selector(gohome)] animated:YES];
     }
     [self saveData];
     [self resetAndUpdateState];
@@ -238,7 +233,7 @@
     [formatter setDateFormat:@"MM/dd/yy HH:mm"];
     NSString *dateString = [formatter stringFromDate:[NSDate date]];
     NSString *temp = [NSString stringWithFormat:@"%@,", subjectName];
-    temp = [temp stringByAppendingFormat:@"%@,", [trialText text] ];
+    temp = [temp stringByAppendingFormat:@"%@,", [trialText title] ];
     temp = [temp stringByAppendingFormat:@"%@,", [addInfoText text] ];
     temp = [temp stringByAppendingFormat:@"%@,", dateString ];
     for (UISlider *s in sliderBars) {
@@ -255,7 +250,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
--(void)gohome{
+-(IBAction)done{
     [self.navigationController popToRootViewControllerAnimated:YES];
     [self printDatabase];
 }
@@ -288,7 +283,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
     //Similar to setSubjectLabelText:.
 -(void) setTrialTextValue: (NSString *) ss {
-    [trialText setText: [NSString stringWithFormat:@"Trial Number %@",ss]];
+    [trialText setTitle: [NSString stringWithFormat:@"Trial Number %@",ss]];
     NSLog(@"trial set to: %@", ss);
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\

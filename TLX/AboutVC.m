@@ -12,7 +12,7 @@
 @implementation AboutVC
 @synthesize bgImage,aboutWebView;
 
--(IBAction) goToMain
+-(IBAction) done
 {
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

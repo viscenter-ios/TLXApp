@@ -14,5 +14,6 @@
   IBOutlet UITextField *subjectText;
 }
 @property (retain, nonatomic) IBOutlet UITextField *subjectText;
-- (IBAction)hideKeyboard: (UITextField*)text;
+-(IBAction)hideKeyboard: (UITextField*)text;
+-(IBAction) done;
 @end
