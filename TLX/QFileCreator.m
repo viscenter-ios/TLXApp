@@ -84,38 +84,86 @@ int qcount;
     [questions addObject:question];
     
     
-    // Start animation
-    [UIView beginAnimations:@"Move" context:nil];
-    [UIView setAnimationDuration:.3];
-    [UIView setAnimationBeginsFromCurrentState:YES];
     
     // Resize the scrollview to fit the new elements
     //settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height+80);
     settings.contentSize = CGSizeMake(settings.contentSize.width, 30+110+[questions count]*80);
     
-    // Manage the add and remove buttonss
-    int contentWidth = [settings frame].size.width-2*20;
-    int halfWidth = contentWidth*(130.0/280.0);
-    int spacerWidth = contentWidth*(20.0/280.0);
-    
+    // Manage the add and remove buttons
     if([questions count]==1)
     {
-        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y+80, halfWidth, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y+80, contentWidth, 40);
-        removeButton.alpha = 0.0;
+        int contentWidth = [settings frame].size.width-2*20;
+        int halfWidth = contentWidth*(130.0/280.0);
+        int spacerWidth = contentWidth*(20.0/280.0);
+        
+        
+        
+        [[question question] setFrame:CGRectMake(addButton.frame.origin.x,
+                                                 addButton.frame.origin.y,
+                                                 contentWidth,
+                                                 30)];
+        [[question lowLabel] setFrame:CGRectMake(addButton.frame.origin.x,
+                                                 addButton.frame.origin.y+40,
+                                                 halfWidth,
+                                                 30)];
+        [[question highLabel] setFrame:CGRectMake(removeButton.frame.origin.x,
+                                                  addButton.frame.origin.y+40,
+                                                  halfWidth,
+                                                  30)];
+        addButton.frame = CGRectMake(20,
+                             addButton.frame.origin.y+80,
+                             contentWidth,
+                             40);
+        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth,
+                                        removeButton.frame.origin.y+80,
+                                        halfWidth,
+                                        40);
+        question.question.alpha = 1.0;
+        question.lowLabel.alpha = 1.0;
+        question.highLabel.alpha = 1.0;
     }
     else
     {
-        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y+80, halfWidth, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y+80, halfWidth, 40);
+        QuestionFields *question0 = [questions objectAtIndex:0];
+        int count = [questions count]-1;
+        [[question question] setFrame:CGRectMake(question0.question.frame.origin.x,
+                                                 question0.question.frame.origin.y+80*count,
+                                                 question0.question.frame.size.width,
+                                                 question0.question.frame.size.height)];
+        [[question lowLabel] setFrame:CGRectMake(question0.lowLabel.frame.origin.x,
+                                                 question0.lowLabel.frame.origin.y+80*count,
+                                                 question0.lowLabel.frame.size.width,
+                                                 question0.lowLabel.frame.size.height)];
+        [[question highLabel] setFrame:CGRectMake(question0.highLabel.frame.origin.x,
+                                                  question0.highLabel.frame.origin.y+80*count,
+                                                  question0.highLabel.frame.size.width,
+                                                  question0.highLabel.frame.size.height)];
+        
+        // Start animation
+        [UIView beginAnimations:@"Move" context:nil];
+        [UIView setAnimationDuration:.3];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
         removeButton.alpha = 1.0;
+        
+        CGRect tmpFrame = [[[questions objectAtIndex:0] lowLabel] frame];
+        addButton.frame = CGRectMake(tmpFrame.origin.x,
+                                     tmpFrame.origin.y+40+80*count,
+                                     tmpFrame.size.width,
+                                     tmpFrame.size.height);
+        
+        tmpFrame = [[[questions objectAtIndex:0] highLabel] frame];
+        removeButton.frame = CGRectMake(tmpFrame.origin.x,
+                                        tmpFrame.origin.y+40+80*count,
+                                        tmpFrame.size.width,
+                                        tmpFrame.size.height);
+        //fade in all the textfields
+        question.question.alpha = 1.0;
+        question.lowLabel.alpha = 1.0;
+        question.highLabel.alpha = 1.0;
+        [UIView commitAnimations];
     }
     
-    //fade in all the textfields
-    question.question.alpha = 1.0;
-    question.lowLabel.alpha = 1.0;
-    question.highLabel.alpha = 1.0;
-    [UIView commitAnimations];
 
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -141,22 +189,33 @@ int qcount;
     //settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height-80);
     settings.contentSize = CGSizeMake(settings.contentSize.width, 40+110+[questions count]*80);
     
-    int contentWidth = [settings frame].size.width-2*20;
-    int halfWidth = contentWidth*(130.0/280.0);
-    int spacerWidth = contentWidth*(20.0/280.0);
-
+    int count = [questions count]-1;
+    
+    CGRect tmpFrame = [[[questions objectAtIndex:0] lowLabel] frame];
     if([questions count]==1)
     {
-        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y-80, halfWidth, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y-80, contentWidth, 40);
+        addButton.frame = CGRectMake(tmpFrame.origin.x,
+                                     tmpFrame.origin.y+40+80*count,
+                                     [[questions objectAtIndex:0] question].frame.size.width,
+                                     tmpFrame.size.height);
         removeButton.alpha = 0.0;
     }
     else
     {
-        removeButton.frame = CGRectMake(20+halfWidth+spacerWidth, removeButton.frame.origin.y-80, halfWidth, 40);
-        addButton.frame = CGRectMake(20, addButton.frame.origin.y-80, halfWidth, 40);
+        addButton.frame = CGRectMake(tmpFrame.origin.x,
+                                     tmpFrame.origin.y+40+80*count,
+                                     tmpFrame.size.width,
+                                     tmpFrame.size.height);
         removeButton.alpha = 1.0;
     }
+    
+    
+    tmpFrame = [[[questions objectAtIndex:0] highLabel] frame];
+    removeButton.frame = CGRectMake(tmpFrame.origin.x,
+                                    tmpFrame.origin.y+40+80*count,
+                                    tmpFrame.size.width,
+                                    tmpFrame.size.height);
+    
     [UIView commitAnimations];  
 
 }
@@ -492,13 +551,13 @@ int qcount;
     [view addSubview:highLabel];
     
     // Magic numbers again @_@
-    int contentWidth = [view frame].size.width-2*x;
+    /*int contentWidth = [view frame].size.width-2*x;
     int halfWidth = contentWidth*(130.0/280.0);
     int spacerWidth = contentWidth*(20.0/280.0);
     [question setFrame:CGRectMake(x, y, contentWidth, 30)];
     [lowLabel setFrame:CGRectMake(x, y+40, halfWidth, 30)];
     [highLabel setFrame:CGRectMake(x+halfWidth+spacerWidth, y+40, halfWidth, 30)];
-    
+    */
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -508,21 +567,30 @@ int qcount;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     UIScrollView * owner = (UIScrollView *)[question superview];
-    svos = owner.contentOffset;
+    
     CGPoint pt;
     CGRect rc = [textField bounds];
     rc = [textField convertRect:rc toView:owner];
     pt = rc.origin;
     pt.x = 0;
-    pt.y -= 40;
-    NSLog(@"(%f,%f)",pt.x, pt.y);
+    
+    if(textField == question)
+    {
+        pt.y -= 40;
+    }
+    else
+    {
+        pt.y -= 80;
+    }
+    
     if([owner contentOffset].y != pt.y )
     {
         [owner setContentOffset:pt animated:NO];
     }
 }
 
-//When the user clicks the return key (which says next) this function is called.  It moves the user to the next field, unless they are editing the last field
+// When the user clicks the return key (which says next) this function is called.
+// It moves the user to the next field, unless they are editing the last field
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     if(textField == question)

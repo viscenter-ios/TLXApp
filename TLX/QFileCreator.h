@@ -8,7 +8,7 @@
 
 
 
-@interface QFileCreator : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>{
+@interface QFileCreator : UIViewController <UITextFieldDelegate, UIAlertViewDelegate    >{
     //the scroll view holds all the other elements
     IBOutlet UIScrollView *settings;
     //these buttons either add or remove textfields from the scrollview
