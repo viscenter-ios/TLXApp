@@ -14,6 +14,7 @@
 
 @synthesize moContext,qTitle ,numOfQuestions, range, rangeIncrement, questionNames, lowLabelNames,qFileString;
 @synthesize highLabelNames, questionName, qLowLabel, qHighLabel, questionNum,lowRange, highRange, rangeInc, scanner;
+@synthesize activeField, settings;
 
 int qcount;
 
@@ -33,28 +34,65 @@ int qcount;
     [self addQuestion];
     
     // Make keyboard close correctly
+    [self registerForKeyboardNotifications];
     [qtitle setDelegate:self];
     [qmin setDelegate:self];
     [qmax setDelegate:self];
     
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
 -(void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\    
 
-///////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
-//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+
+-(void)keyboardWasShown:(NSNotification*)aNotification;
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    settings.contentInset = contentInsets;
+    settings.scrollIndicatorInsets = contentInsets;
+    
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect aRect = settings.frame;
+    CGPoint aPt  = [settings convertPoint:activeField.frame.origin toView:self.view];
+    aRect.size.height -= kbSize.height;
+    
+    if (!CGRectContainsPoint(aRect, aPt) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, aPt.y-kbSize.height);
+        [settings setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+-(void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    settings.contentInset = contentInsets;
+    settings.scrollIndicatorInsets = contentInsets;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -76,11 +114,11 @@ int qcount;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //This function handles the action when the user selects the "Add Question" button I've only commented one of the initializations, because it's quite repetitive
--(IBAction)addQuestion{    
+- (IBAction)addQuestion{    
     // TODO: fix magic numbers (110 is the height above the first question, 80 is the height of a question object)
     QuestionFields *question = [[QuestionFields alloc] initAtPosX: 20
                                                                 Y: 110+80*[questions count]];
-    [question setSuperview:settings];
+    [question setSuperController:self];
     [questions addObject:question];
     
     
@@ -92,9 +130,9 @@ int qcount;
     // Manage the add and remove buttons
     if([questions count]==1)
     {
-        int contentWidth = [settings frame].size.width-2*20;
-        int halfWidth = contentWidth*(130.0/280.0);
-        int spacerWidth = contentWidth*(20.0/280.0);
+        float contentWidth = [settings frame].size.width-2*20;
+        float halfWidth = (contentWidth-20.0)/2;
+        float spacerWidth = 20.0;
         
         
         
@@ -542,13 +580,14 @@ int qcount;
     
 }
 
--(void)setSuperview:(UIScrollView*)view
+-(void)setSuperController:(QFileCreator*)qfc
 {
     
+    superController = qfc;
     //all the subviews have to be added to the scrollview
-    [view addSubview:question];
-    [view addSubview:lowLabel];
-    [view addSubview:highLabel];
+    [[qfc settings] addSubview:question];
+    [[qfc settings] addSubview:lowLabel];
+    [[qfc settings] addSubview:highLabel];
     
     // Magic numbers again @_@
     /*int contentWidth = [view frame].size.width-2*x;
@@ -565,9 +604,10 @@ int qcount;
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    UIScrollView * owner = (UIScrollView *)[question superview];
-    
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [superController setActiveField:textField];
+}
+    /*
     CGPoint pt;
     CGRect rc = [textField bounds];
     rc = [textField convertRect:rc toView:owner];
@@ -586,8 +626,7 @@ int qcount;
     if([owner contentOffset].y != pt.y )
     {
         [owner setContentOffset:pt animated:NO];
-    }
-}
+    }*/
 
 // When the user clicks the return key (which says next) this function is called.
 // It moves the user to the next field, unless they are editing the last field
@@ -595,19 +634,15 @@ int qcount;
     [textField resignFirstResponder];
     if(textField == question)
     {
+        [superController setActiveField:lowLabel];
         [lowLabel becomeFirstResponder];
     }
     else if(textField == lowLabel)
     {
+        [superController setActiveField:highLabel];
         [highLabel becomeFirstResponder];
     }
-    return YES;
-}
-
-
--(void) textFieldDidEndEditing:(UITextField *) textField {
-    UIScrollView * owner = (UIScrollView *)[question superview]; 
-    [owner setContentOffset:svos animated:NO];
+    [superController setActiveField:nil];
     return YES;
 }
 
