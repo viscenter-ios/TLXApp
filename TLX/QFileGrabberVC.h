@@ -55,6 +55,7 @@ The full NASA-TLX in this format can be found at the bottom of this file.
   NSNumber *rangeInc;
   
   NSScanner *scanner;
+  BOOL needsSaved;
 }
 @property(retain, nonatomic) NSManagedObjectContext *moContext;
 @property(retain, nonatomic) NSScanner *scanner;

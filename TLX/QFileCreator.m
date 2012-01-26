@@ -65,6 +65,11 @@ int qcount;
 }
 
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [self setActiveField:textField];
+    return YES;
+}
+
 -(void)keyboardWasShown:(NSNotification*)aNotification;
 {
     NSDictionary* info = [aNotification userInfo];
@@ -98,6 +103,11 @@ int qcount;
     [textField resignFirstResponder];
     if (textField == qmin) {
         [qmax becomeFirstResponder];
+        [self setActiveField:qmax];
+    }
+    else
+    {
+        [self setActiveField:nil];
     }
     return NO;
 }
@@ -472,7 +482,11 @@ int qcount;
         info = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You have not saved your questionnaire. Exit Anyway?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [info show];
         [info release];
-        return;
+    }
+    else
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
     }
 }
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -482,7 +496,7 @@ int qcount;
     //this displays an explanation in an alert if the user clicks the "i" next to data range
 -(IBAction)rangeInfo{
     UIAlertView *info;
-    info = [[UIAlertView alloc] initWithTitle:@"Info" message:@"When you use the questionnaire, a slider will appear for data collection.  Specify the minimum and maximum values for the slider." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    info = [[UIAlertView alloc] initWithTitle:@"Info" message:@"When you use the questionnaire, a slider will appear for data collection.  Specify the minimum and maximum values for the slider." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [info show];
     [info release];
 }
@@ -604,8 +618,9 @@ int qcount;
 }
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     [superController setActiveField:textField];
+    return YES;
 }
     /*
     CGPoint pt;

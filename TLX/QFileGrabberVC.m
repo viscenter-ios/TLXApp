@@ -122,6 +122,7 @@
     
 	}
   [self printDatabase];
+  needsSaved = NO;
    
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -149,12 +150,13 @@
 {
   NSURL *url = [NSURL URLWithString:[addressText text]];
   [self setQFileString:[NSString stringWithContentsOfURL:url
-                                         encoding:NSUTF8StringEncoding
-                                            error:nil]];
+                                                encoding:NSUTF8StringEncoding
+                                                   error:nil]];
   if(url){
     [textView setText:qFileString];
     [textView setEditable:NO];
     [self parseQFile];
+    needsSaved = YES;
   }
   else{
     UIAlertView *alert;
@@ -172,7 +174,30 @@
 
 -(IBAction) done
 {
-  [self.navigationController popToRootViewControllerAnimated:YES];
+    if(needsSaved)
+    {
+        UIAlertView *info;
+        info = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                          message:@"You have not saved your questionnaire. Exit Anyway?"
+                                         delegate:self cancelButtonTitle:@"No"
+                                otherButtonTitles:@"Yes", nil];
+      [info show];
+      [info release];
+    }
+    else
+    {
+      [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex==0) {
+        return;
+    }
+    else
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -202,6 +227,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+    needsSaved = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
