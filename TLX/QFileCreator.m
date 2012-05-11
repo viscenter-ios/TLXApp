@@ -37,8 +37,7 @@ int qcount;
     [self registerForKeyboardNotifications];
     [qtitle setDelegate:self];
     [qmin setDelegate:self];
-    [qmax setDelegate:self];
-    
+    [qmax setDelegate:self];    
 }
 
 -(void)viewDidUnload
@@ -135,7 +134,7 @@ int qcount;
     
     // Resize the scrollview to fit the new elements
     //settings.frame = CGRectMake(0, 44, settings.frame.size.width, settings.frame.size.height+80);
-    settings.contentSize = CGSizeMake(settings.contentSize.width, 30+110+[questions count]*80);
+    settings.contentSize = CGSizeMake(settings.contentSize.width, 40+110+[questions count]*80);
     
     // Manage the add and remove buttons
     if([questions count]==1)
@@ -198,13 +197,13 @@ int qcount;
         addButton.frame = CGRectMake(tmpFrame.origin.x,
                                      tmpFrame.origin.y+40+80*count,
                                      tmpFrame.size.width,
-                                     tmpFrame.size.height);
+                                     40);
         
         tmpFrame = [[[questions objectAtIndex:0] highLabel] frame];
         removeButton.frame = CGRectMake(tmpFrame.origin.x,
                                         tmpFrame.origin.y+40+80*count,
                                         tmpFrame.size.width,
-                                        tmpFrame.size.height);
+                                        40);
         //fade in all the textfields
         question.question.alpha = 1.0;
         question.lowLabel.alpha = 1.0;
@@ -245,7 +244,7 @@ int qcount;
         addButton.frame = CGRectMake(tmpFrame.origin.x,
                                      tmpFrame.origin.y+40+80*count,
                                      [[questions objectAtIndex:0] question].frame.size.width,
-                                     tmpFrame.size.height);
+                                     40);
         removeButton.alpha = 0.0;
     }
     else
@@ -253,7 +252,7 @@ int qcount;
         addButton.frame = CGRectMake(tmpFrame.origin.x,
                                      tmpFrame.origin.y+40+80*count,
                                      tmpFrame.size.width,
-                                     tmpFrame.size.height);
+                                     40);
         removeButton.alpha = 1.0;
     }
     
@@ -262,7 +261,7 @@ int qcount;
     removeButton.frame = CGRectMake(tmpFrame.origin.x,
                                     tmpFrame.origin.y+40+80*count,
                                     tmpFrame.size.width,
-                                    tmpFrame.size.height);
+                                    40);
     
     [UIView commitAnimations];  
 
@@ -460,17 +459,6 @@ int qcount;
     }
     return YES;
 }
-
-/*
-    //If an error was found, an alert is presented with error details and return.
-    if(error){
-        alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        return;
-    }
-*/
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
     //If the user cancels, we just dismiss the view controller without saving anything. that's all, nothing to see here.  but really...

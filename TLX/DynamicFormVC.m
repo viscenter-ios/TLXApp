@@ -45,9 +45,16 @@
         CGRect lowLabelFrame = CGRectMake(20.0, 118 + i*70, 130.0, 17.0);
         CGRect highLabelFrame = CGRectMake(170.0, 118 + i*70, 130.0, 17.0);
     
-        [scrollView addSubview:[self makeLabelWithText:[questionLabels objectAtIndex:i]withRect:qLabelFrame withFont:questionFont autoResize:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin]];
-        [scrollView addSubview:[self makeLabelWithText:[lowLabels objectAtIndex:i] withRect:lowLabelFrame  withFont:labelFont autoResize:UIViewAutoresizingFlexibleRightMargin]];
-        [scrollView addSubview:[self makeLabelWithText:[highLabels objectAtIndex:i] withRect:highLabelFrame withFont:labelFont autoResize:UIViewAutoresizingFlexibleLeftMargin]];
+        // Set up labels
+        UILabel *label = [self makeLabelWithText:[questionLabels objectAtIndex:i]withRect:qLabelFrame withFont:questionFont autoResize:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin];
+        [label setTextColor:[UIColor whiteColor]];
+        [scrollView addSubview:label];
+        label = [self makeLabelWithText:[lowLabels objectAtIndex:i] withRect:lowLabelFrame  withFont:labelFont autoResize:UIViewAutoresizingFlexibleRightMargin];
+        [label setTextColor:[UIColor whiteColor]];
+        [scrollView addSubview:label];
+        label = [self makeLabelWithText:[highLabels objectAtIndex:i] withRect:highLabelFrame withFont:labelFont autoResize:UIViewAutoresizingFlexibleLeftMargin];
+        [label setTextColor:[UIColor whiteColor]];
+        [scrollView addSubview:label];
     
         UISlider *tempSlider = [[UISlider alloc] initWithFrame:sliderFrame];
         NSLog(@"highRangeBound: %f", [highRangeBound floatValue]);
