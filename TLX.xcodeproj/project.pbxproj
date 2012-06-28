@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		272CDB6E155D881B00BE8CBB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 272CDB6B155D881B00BE8CBB /* background.png */; };
-		272CDB6F155D881B00BE8CBB /* buttonDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 272CDB6C155D881B00BE8CBB /* buttonDown.png */; };
 		272CDB70155D881B00BE8CBB /* buttonUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 272CDB6D155D881B00BE8CBB /* buttonUp.png */; };
 		2798C4D2143270030081A19A /* QFileCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798C4D0143270030081A19A /* QFileCreator.m */; };
 		2798C4D3143270030081A19A /* QFileCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2798C4D1143270030081A19A /* QFileCreator.xib */; };
@@ -43,11 +42,13 @@
 		D0F6856C139830FF001CF136 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F68564139830FF001CF136 /* SettingsVC.m */; };
 		D0F6856D139830FF001CF136 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F68565139830FF001CF136 /* SettingsVC.xib */; };
 		D0F68577139838CC001CF136 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F68576139838CC001CF136 /* MessageUI.framework */; };
+		EF581C71159CB627000CEDCA /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = EF581C70159CB627000CEDCA /* about.html */; };
+		EF581C74159CBC0A000CEDCA /* TLX_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF581C72159CBC0A000CEDCA /* TLX_Icon.png */; };
+		EF581C75159CBC0A000CEDCA /* TLX_Retina_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF581C73159CBC0A000CEDCA /* TLX_Retina_Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		272CDB6B155D881B00BE8CBB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		272CDB6C155D881B00BE8CBB /* buttonDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonDown.png; sourceTree = "<group>"; };
 		272CDB6D155D881B00BE8CBB /* buttonUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonUp.png; sourceTree = "<group>"; };
 		2798C4CF143270030081A19A /* QFileCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFileCreator.h; sourceTree = "<group>"; };
 		2798C4D0143270030081A19A /* QFileCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFileCreator.m; sourceTree = "<group>"; };
@@ -99,6 +100,10 @@
 		D0F68564139830FF001CF136 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		D0F68565139830FF001CF136 /* SettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
 		D0F68576139838CC001CF136 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EF227D9F158F723D0002EA36 /* TLX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TLX copy-Info.plist"; path = "/Users/ekemper/Desktop/TLX/TLX copy-Info.plist"; sourceTree = "<absolute>"; };
+		EF581C70159CB627000CEDCA /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		EF581C72159CBC0A000CEDCA /* TLX_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TLX_Icon.png; sourceTree = "<group>"; };
+		EF581C73159CBC0A000CEDCA /* TLX_Retina_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TLX_Retina_Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +125,12 @@
 		D0F68521139830A9001CF136 = {
 			isa = PBXGroup;
 			children = (
+				EF581C72159CBC0A000CEDCA /* TLX_Icon.png */,
+				EF581C73159CBC0A000CEDCA /* TLX_Retina_Icon.png */,
 				D0F68538139830A9001CF136 /* TLX */,
 				D0F6852F139830A9001CF136 /* Frameworks */,
 				D0F6852D139830A9001CF136 /* Products */,
+				EF227D9F158F723D0002EA36 /* TLX copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				272CDB6B155D881B00BE8CBB /* background.png */,
-				272CDB6C155D881B00BE8CBB /* buttonDown.png */,
 				272CDB6D155D881B00BE8CBB /* buttonUp.png */,
 				D0EFF70B13A12468001B8581 /* AboutVC.h */,
 				D0EFF70C13A12468001B8581 /* AboutVC.m */,
@@ -201,6 +208,7 @@
 				D0F6853B139830A9001CF136 /* InfoPlist.strings */,
 				D0F6853E139830A9001CF136 /* TLX-Prefix.pch */,
 				D0F6853F139830A9001CF136 /* main.m */,
+				EF581C70159CB627000CEDCA /* about.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -250,6 +258,7 @@
 		D0F68523139830A9001CF136 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "University Of Kentucky";
 			};
 			buildConfigurationList = D0F68526139830A9001CF136 /* Build configuration list for PBXProject "TLX" */;
@@ -287,8 +296,10 @@
 				D0EFF70F13A12468001B8581 /* AboutVC.xib in Resources */,
 				2798C4D3143270030081A19A /* QFileCreator.xib in Resources */,
 				272CDB6E155D881B00BE8CBB /* background.png in Resources */,
-				272CDB6F155D881B00BE8CBB /* buttonDown.png in Resources */,
 				272CDB70155D881B00BE8CBB /* buttonUp.png in Resources */,
+				EF581C71159CB627000CEDCA /* about.html in Resources */,
+				EF581C74159CBC0A000CEDCA /* TLX_Icon.png in Resources */,
+				EF581C75159CBC0A000CEDCA /* TLX_Retina_Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -360,7 +371,8 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,14 +382,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -386,14 +400,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "TLX/TLX-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,13 +420,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLX/TLX-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "TLX/TLX-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

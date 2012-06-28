@@ -48,10 +48,14 @@
   [super viewDidLoad];
   [bgImage sizeToFit];
   [self.view sendSubviewToBack:bgImage];
-  NSString *address = ABOUT_ADDRESS;
-  NSURL *url = [NSURL URLWithString:address];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  [aboutWebView loadRequest:request];
+  //NSString *address = ABOUT_ADDRESS;
+  //NSURL *url = [NSURL URLWithString:address];
+  //NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  //[aboutWebView loadRequest:request];
+  [aboutWebView loadRequest:
+     [NSURLRequest requestWithURL:
+      [NSURL fileURLWithPath:
+       [[NSBundle mainBundle] pathForResource:@"about.html" ofType:nil]isDirectory:NO]]];
   [aboutWebView setBackgroundColor:[UIColor clearColor]];
   [aboutWebView setOpaque:NO];
   

@@ -13,36 +13,46 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0F6852B139830A9001CF136"
-               BuildableName = "TLX.app"
-               BlueprintName = "TLX"
+               BlueprintIdentifier = "EF227D71158F723D0002EA36"
+               BuildableName = "TLX copy.app"
+               BlueprintName = "k"
                ReferencedContainer = "container:TLX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EF227D71158F723D0002EA36"
+            BuildableName = "TLX copy.app"
+            BlueprintName = "k"
+            ReferencedContainer = "container:TLX.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0F6852B139830A9001CF136"
-            BuildableName = "TLX.app"
-            BlueprintName = "TLX"
+            BlueprintIdentifier = "EF227D71158F723D0002EA36"
+            BuildableName = "TLX copy.app"
+            BlueprintName = "k"
             ReferencedContainer = "container:TLX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -50,18 +60,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release">
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0F6852B139830A9001CF136"
-            BuildableName = "TLX.app"
-            BlueprintName = "TLX"
+            BlueprintIdentifier = "EF227D71158F723D0002EA36"
+            BuildableName = "TLX copy.app"
+            BlueprintName = "k"
             ReferencedContainer = "container:TLX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
