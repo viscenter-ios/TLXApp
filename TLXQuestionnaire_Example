@@ -1,29 +1,29 @@
-TITLE NASA-TLX
+TITLE NASA-TLX Example Questionnaire
 
-QUESTIONS_PER_FRAME 6
+QUESTIONS_PER_FRAME 3
 RANGE 0 20
 RANGE_INCREMENT 1
 
 
-QUESTION Mental Demand
-RANGE_MIN_LABEL Low 
-RANGE_MAX_LABEL High
+QUESTION How mentally demanding was this task?
+RANGE_MIN_LABEL Very Low 
+RANGE_MAX_LABEL Very High
 
 
-QUESTION Physical Demand
-RANGE_MIN_LABEL Low 
-RANGE_MAX_LABEL High
+QUESTION How physically demanding was this task?
+RANGE_MIN_LABEL Very Low 
+RANGE_MAX_LABEL Very High
 
 
-QUESTION Temporal Demand
-RANGE_MIN_LABEL Low 
-RANGE_MAX_LABEL High
+QUESTION How hurried or rushed was the pace of the task?
+RANGE_MIN_LABEL Very Low 
+RANGE_MAX_LABEL Very High
 
 
-QUESTION Effort
-RANGE_MIN_LABEL Good
-RANGE_MAX_LABEL Bad
+QUESTION How hard did you have to work to accomplish your level of performance?
+RANGE_MIN_LABEL Very Low
+RANGE_MAX_LABEL Very High
 
-QUESTION Performance
-RANGE_MIN_LABEL Low 
-RANGE_MAX_LABEL High
+QUESTION How successful were you in accomplishing what you were asked to do?
+RANGE_MIN_LABEL Failure 
+RANGE_MAX_LABEL Perfect
