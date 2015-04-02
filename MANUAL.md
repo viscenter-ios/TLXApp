@@ -22,7 +22,7 @@ The NASA-TLX app provides two methods for loading a questionnaire. The first is
 by creating a questionnaire inside of the app and the second is by loading a 
 questionnaire from a URL.  
 
-_Creating a Questionnaire on the App_
+_**Creating a Questionnaire on the App**_
 
 To create a questionnaire inside of the NASA-TLX app, select the "Create Question 
 File" option from the Main Menu. You will be provided with various options:  
@@ -53,7 +53,7 @@ will add another set of Question Title and Minimum/Maximum label fields.
 After all questions have been added to the Questionnaire, select the Save option 
 in the top-right. The Questionnaire will now be available for administration.  
 
-_Uploading a Questionnaire from a URL_
+_**Uploading a Questionnaire from a URL**_
 
 The NASA-TLX app allows for administrators to create custom questionnaires on 
 their computers and upload them to the NASA-TLX app. This method is generally 
